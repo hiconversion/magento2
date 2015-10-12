@@ -1,0 +1,27 @@
+<?php
+
+$helper = $this->helper('Hic\Integration\Helper\Data');
+$hic_data = $helper->hicPageData();
+
+?>
+
+<?php if($helper->isEnabled()):?>
+
+<script id="hiconversion_head_page" type="text/javascript">
+     var __hic = __hic || {};
+    (function(){
+        try {
+            <?php if(isset($hic_data)):?>
+            __hic.data = __hic.data || {};
+                <?php if(null!==$hic_data->getData('page')):?>
+            __hic.data.page = <?php echo Zend_Json::encode($hic_data->getData('page')); ?>;
+                <?php endif; ?>
+                <?php if(null!==$hic_data->getData('product')):?>
+            __hic.data.product = <?php echo Zend_Json::encode($hic_data->getData('product')); ?>;
+                <?php endif; ?>
+            <?php endif; ?>
+        } catch (e) {
+        }
+    })();
+</script>
+<?php endif; ?>
