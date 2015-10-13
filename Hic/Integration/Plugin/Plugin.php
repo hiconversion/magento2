@@ -16,18 +16,26 @@ class Plugin
         $this->objectManager = $objectManager;
     }
 
+    public function _getBlockHtml($templateName) 
+    {
+        return $this->objectManager->create('Hic\Integration\Block\Tag')
+            ->setTemplate($templateName)
+            ->toHtml();
+    }
 
 
     public function afterRenderHeadContent(\Magento\Framework\View\Page\Config\Renderer $subject, $html)
     {
         $this->logger->addDebug('rendering head content ');
-        $tagPage = $this->objectManager->create('Hic\Integration\Block\Tag')
-            ->setTemplate('headPage.phtml')
-            ->toHtml();
+        $tagPage = $this->_getBlockHtml('headPage.phtml');
 
         $this->logger->addDebug('tagPage-' . $tagPage);
-  
-       return $tagPage . $html;
-       return $html;
+         
+        $tagSession = $this->_getBlockHtml('headSession.phtml'); 
+ 
+        $tagAlways = $this->_getBlockHtml('headAlways.phtml');
+
+        return $tagPage . $tagSession . $tagAlways . $html;
+        return $html;
     }
 }

@@ -3,7 +3,7 @@
 namespace Hic\Integration\Helper;
 
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+class Helper extends \Magento\Framework\App\Helper\AbstractHelper
 {
     const SETTINGS_ENABLED = 'hiconversion/configuration/enabled';
     const SETTINGS_SITE_ID = 'hiconversion/configuration/site_id';
@@ -22,7 +22,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $this->scopeConfig = $scopeConfig;
         $this->objectManager = $objectManager;
     }
- 
+
+    private function _createModel() 
+    {
+        return $this->objectManager->create('Hic\Integration\Model\Data');
+    } 
+  
     public function getSiteId()
     {
         return $this->scopeConfig->getValue(self::SETTINGS_SITE_ID);
@@ -35,8 +40,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function hicPageData()
     {
-        $model = $this->objectManager->create('Hic\Integration\Model\Data')
-           ->populatePageData();
+        $model = $this->_createModel()->populatePageData();
 
         if ($model->isProduct()) {
             $model->populateProductData();
@@ -44,5 +48,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
         return $model;
     }
+    
+    public function hicSessionData()
+    {
+        $model = $this->_createModel()
+            ->populateCartData()
+            ->populateUserData();
 
+        return $model;
+    }
 }

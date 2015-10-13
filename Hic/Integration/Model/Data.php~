@@ -144,7 +144,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             if ($customer) {
 	        $orders = $this->_getOrders($customerId);
                 if ($orders) {
-	    	    $data['ht'] = $orders->getSize() > 0;
+	    	    $data['ht'] = true;
 	        }
 	        if ($customer->getDob()) {
 	            $data['bday'] = $customer->getDob();

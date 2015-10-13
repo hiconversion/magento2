@@ -1,0 +1,26 @@
+<?php
+
+
+$helper = $this->helper('Hic\Integration\Helper\Helper');
+$hic_data = $helper->hicSessionData();
+?>
+<?php if($helper->isEnabled()):?>
+
+<script id="hiconversion_head_session" type="text/javascript">
+    var __hic = __hic || {};
+    (function(){
+        try {
+            <?php if(isset($hic_data)):?>
+            __hic.data = __hic.data || {};
+                <?php if(null!==$hic_data->getData('cart')):?>
+            __hic.data.cart = <?php echo Zend_Json::encode($hic_data->getData('cart')); ?>;
+                <?php endif; ?>
+                <?php if(null!==$hic_data->getData('user')):?>
+            __hic.data.user = <?php echo Zend_Json::encode($hic_data->getData('user')); ?>;
+                <?php endif; ?>
+            <?php endif; ?>
+        } catch (e) {
+        }
+    })();
+</script>
+<?php endif; ?>
