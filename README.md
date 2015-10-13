@@ -1,5 +1,7 @@
 # Magento2
 
+Magento 2 compatible version of the integration extension
+
 To get started you will need to setup a magento 2 installation (preferably through a vm)
 
 Follow the installation setup in the magento docs: http://devdocs.magento.com/guides/v2.0/install-gde/bk-install-guide.html
