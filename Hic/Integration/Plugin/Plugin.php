@@ -10,7 +10,7 @@ class Plugin
 
     public function __construct (
         \Psr\Log\LoggerInterface $logger,
-         \Magento\Framework\ObjectManagerInterface $objectManager        
+        \Magento\Framework\ObjectManagerInterface $objectManager        
     ) {
         $this->logger = $logger;
         $this->objectManager = $objectManager;

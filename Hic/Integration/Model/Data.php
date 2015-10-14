@@ -4,7 +4,8 @@ namespace Hic\Integration\Model;
 
 class Data extends \Magento\Framework\Model\AbstractModel
 { 
-   
+  
+    protected $logger; 
   
     protected $request;
 
@@ -26,9 +27,12 @@ class Data extends \Magento\Framework\Model\AbstractModel
 
     protected $orderCollectionFactory;
 
+    protected $categoryCollectionFactory;
+
     protected $checkoutSession;
 
     public function __construct(
+        \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\App\RequestInterface $request,
         \Magento\Catalog\Helper\Data $catalogData,
         \Magento\Catalog\Helper\Product $productHelper,
@@ -39,8 +43,10 @@ class Data extends \Magento\Framework\Model\AbstractModel
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Sales\Model\Resource\Order\CollectionFactory $orderCollectionFactory,
+        \Magento\Catalog\Model\Resource\Category\Collection\Factory $categoryCollectionFactory,
         \Magento\Checkout\Model\Session $checkoutSession
    ) {
+        $this->logger = $logger;
         $this->request = $request;
         $this->catalogData = $catalogData;
         $this->productHelper = $productHelper;
@@ -51,6 +57,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->customerRepository = $customerRepository;
         $this->customerSession = $customerSession;
         $this->orderCollectionFactory = $orderCollectionFactory;
+        $this->categoryCollectionFactory = $categoryCollectionFactory;
         $this->checkoutSession = $checkoutSession;
     }
 
@@ -88,9 +95,19 @@ class Data extends \Magento\Framework\Model\AbstractModel
 
     protected function _getCategoryNames($product)
     {
-        $catIds = $product->getCategoryIds();
-    //    $this->filterBuilder
-      //      ->setField('id')
+        $catCollection = $this->categoryCollectionFactory->create()
+            ->addIdFilter($product->getCategoryIds())
+            ->addNameToResult()
+            ->addIsActiveFilter();
+        
+        $categoryNames = array();
+ 
+        foreach ($catCollection as $category) {
+            
+            $categoryNames[] = $category->getName();
+        }
+ 
+        return $categoryNames;
         
     }
 
@@ -137,7 +154,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $info['nm'] = $product->getName();
             $info['img'] = $this->productHelper->getImageUrl($product);
             $info['sku'] = $product->getSku();
-           // $info['cat'] = $this->_getCategoryNames($product);
+            $info['cat'] = $this->_getCategoryNames($product);
             $data[] = $info;
             $count = $count + 1;
         }
@@ -156,7 +173,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
     {
         $currentProduct = $this->catalogData->getProduct();
         if ($currentProduct) {
-            $data['cat'] = $this->getCategory();
+            $data['cat'] = $this->_getCategoryNames($currentProduct);
             $data['id']  = $currentProduct->getId();
             $data['nm']  = $currentProduct->getName();
             $data['url'] = $this->productHelper->getProductUrl($currentProduct);
