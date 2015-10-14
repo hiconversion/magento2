@@ -30,10 +30,11 @@ class Plugin
         
         $tagSession = $this->_getBlockHtml('headSession.phtml'); 
   
-        $tagPage = $this->_getBlockHtml('headPage.phtml');   
+        $tagPage = $this->_getBlockHtml('headPage.phtml');
+           
      
         $tagNever = $this->_getBlockHtml('headNever.phtml');
 
-        return $tagAlways . $tagSession . $tagPage . $tagNever . $html;
+        return $tagPage . $tagSession . $tagAlways . $tagNever . $html;
     }
 }

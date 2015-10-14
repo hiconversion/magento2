@@ -1,0 +1,22 @@
+<?php
+
+
+$helper = $this->helper('Hic\Integration\Helper\Helper');
+$hic_data = $helper->hicNeverData();
+?>
+<?php if($helper->isEnabled()):?>
+    <?php if(isset($hic_data)):?>
+        <?php if(null!==$hic_data->getData('tr')):?>
+<script id="hiconversion_head_never" type="text/javascript">
+    var __hic = __hic || {};
+    (function(){
+        try {
+            __hic.data = __hic.data || {};
+            __hic.data.tr = <?php echo Zend_Json::encode($hic_data->getData('tr')); ?>;
+        } catch (e) {
+        }
+    })();
+</script>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>
