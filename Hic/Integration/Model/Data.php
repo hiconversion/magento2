@@ -15,7 +15,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
 
     protected $productRepository;
 
-    protected $cartHelper;
+    protected $cart;
 
     protected $searchCriteriaBuilder;
    
@@ -37,7 +37,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         \Magento\Catalog\Helper\Data $catalogData,
         \Magento\Catalog\Helper\Product $productHelper,
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
-        \Magento\Checkout\Helper\Cart $cartHelper,
+        \Magento\Checkout\Model\Cart $cart,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
         \Magento\Framework\Api\FilterBuilder $filterBuilder,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
@@ -51,7 +51,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->catalogData = $catalogData;
         $this->productHelper = $productHelper;
         $this->productRepository = $productRepository;
-        $this->cartHelper = $cartHelper;
+        $this->cart = $cart;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->filterBuilder = $filterBuilder;
         $this->customerRepository = $customerRepository;
@@ -187,7 +187,9 @@ class Data extends \Magento\Framework\Model\AbstractModel
 
     public function populateCartData()
     {
-        $cartQuote = $this->cartHelper->getQuote();
+        $cartQuote = $this->cart->getQuote();
+        $this->logger->addDebug(var_export($cartQuote->debug()));
+        echo(time());
         if ($cartQuote->getItemsCount() > 0) {
             $data = array();
             if ($cartQuote->getSubtotal()) {

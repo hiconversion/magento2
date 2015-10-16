@@ -1,0 +1,10 @@
+define([
+    'jquery',
+    'Magento_Customer/js/customer-data'
+], function ($, customerData) {
+    'use strict';
+
+    var customer = customerData.get('customer');
+    console.log('getting customer: ',customer());
+
+});
