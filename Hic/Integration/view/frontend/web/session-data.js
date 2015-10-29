@@ -10,4 +10,7 @@ define([
     var cart = customerData.get('cart');
     console.log('getting cart: ', cart());
 
+    var hicData = customerData.get('hicdata');
+    console.log('getting hicData: ', hicData());
+
 });
