@@ -27,10 +27,13 @@ class UserData extends \Magento\Framework\Object implements SectionSourceInterfa
     public function getSectionData()
     {   
         $data = [];        
-        
-        $user = $this->getUserData(); 
-        if (null !== $user) {
-            $data = $user;
+        if ($this->helper->isEnabled()) {
+            $user = $this->getUserData(); 
+            if (null !== $user) {
+                $data = $user;
+            }
+        } else {
+           $data['disabled' => true];
         }
         return $data;
     }

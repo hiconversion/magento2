@@ -12,25 +12,30 @@ define([
         } 
     }
 
+    function isEnabled(dataObject) {
+        return !(dataObject && dataObject.disabled);
+    }
+
     var hicUserData = customerData.get('hicuserdata');
     var user = hicUserData();
     var hicCartData = customerData.get('hiccartdata');
     var cart = hicCartData();
 
-    writeWindowObject('userObserver', hicUserData);
-    writeWindowObject('cartObserver', hicCartData);
+    if (isEnabled(user)) {
+        writeWindowObject('userObserver', hicUserData);
+        writeWindowObject('cartObserver', hicCartData);
     
-    writeWindowObject('user', user);
-    writeWindowObject('cart', cart);
+        writeWindowObject('user', user);
+        writeWindowObject('cart', cart);
 
      
-    hicUserData.subscribe(function(user) {
-        writeWindowObject('user', user);
-    });
+        hicUserData.subscribe(function(user) {
+            writeWindowObject('user', user);
+        });
     
 
-    hicCartData.subscribe(function(cart) {
-        writeWindowObject('cart', cart);
-    });
-
+        hicCartData.subscribe(function(cart) {
+            writeWindowObject('cart', cart);
+        });
+    }
 });

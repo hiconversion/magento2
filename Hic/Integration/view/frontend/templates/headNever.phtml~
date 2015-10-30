@@ -1,10 +1,10 @@
 <?php
-
-
 $helper = $this->helper('Hic\Integration\Helper\Helper');
-$hic_data = $helper->hicNeverData();
 ?>
 <?php if($helper->isEnabled()):?>
+<?php
+$hic_data = $helper->getOrderData();
+?>
     <?php if(isset($hic_data)):?>
         <?php if(null!==$hic_data->getData('tr')):?>
 <script id="hiconversion_head_never" type="text/javascript">
