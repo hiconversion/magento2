@@ -30,7 +30,7 @@ class UserData extends \Magento\Framework\Object implements SectionSourceInterfa
         
         $user = $this->getUserData(); 
         if (null !== $user) {
-            $data['user'] = $user;
+            $data = $user;
         }
         return $data;
     }

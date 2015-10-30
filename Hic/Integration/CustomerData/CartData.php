@@ -30,7 +30,7 @@ class CartData extends \Magento\Framework\Object implements SectionSourceInterfa
         $data = [];        
         $cart = $this->getCartData();
         if (null !== $cart) {
-            $data['cart'] = $cart;
+            $data = $cart;
         }
         return $data;
     }

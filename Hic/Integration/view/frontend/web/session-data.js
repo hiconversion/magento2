@@ -4,17 +4,33 @@ define([
 ], function ($, customerData) {
     'use strict';
 
+    function writeWindowObject(name, data) {
+        if (data && !$.isArray(data) && !$.isEmptyObject(data)) {
+            window.__hic = window.__hic || {};
+            window.__hic.data = window.__hic.data || {};
+            window.__hic.data[name] = data;
+        } 
+    }
+
     var hicUserData = customerData.get('hicuserdata');
+    var user = hicUserData();
     var hicCartData = customerData.get('hiccartdata');
+    var cart = hicCartData();
+
+    writeWindowObject('userObserver', hicUserData);
+    writeWindowObject('cartObserver', hicCartData);
+    
+    writeWindowObject('user', user);
+    writeWindowObject('cart', cart);
+
      
     hicUserData.subscribe(function(user) {
-        console.log('user data has updated:',user);
-
+        writeWindowObject('user', user);
     });
     
 
     hicCartData.subscribe(function(cart) {
-        console.log('cart data has updated:',cart);
+        writeWindowObject('cart', cart);
     });
 
 });

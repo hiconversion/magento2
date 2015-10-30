@@ -26,40 +26,18 @@ class UserData extends \Magento\Framework\Object implements SectionSourceInterfa
      */
     public function getSectionData()
     {   
-        $data = [];        
-        $cart = $this->getCartData();
-        if (null !== $cart) {
-            $data['cart'] = $cart;
-        }
+        $data = {};        
+        
         $user = $this->getUserData(); 
         if (null !== $user) {
-            $data['user'] = $user;
+            $data = $user;
         }
         return $data;
     }
 
-    protected function getSessionData()
-    {
-        if (null === $this->sessionData) {
-            $this->sessionData = $this->helper->hicSessionData();
-        }
-        return $this->sessionData;
-    }
-
-    protected function getSessionDataItem($name)
-    {
-        $sessionData = $this->getSessionData();
-        return $sessionData->getData($name);
-    }
-
-    protected function getCartData()
-    {
-        return $this->getSessionDataItem('cart');
-    }
-
     protected function getUserData()
     {
-        return $this->getSessionDataItem('user');
+        return $this->helper->getUserData();
     }
 
 }

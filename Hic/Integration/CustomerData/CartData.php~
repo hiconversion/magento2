@@ -27,17 +27,17 @@ class CartData extends \Magento\Framework\Object implements SectionSourceInterfa
      */
     public function getSectionData()
     {   
-        $data = [];        
+        $data = {};        
         $cart = $this->getCartData();
         if (null !== $cart) {
-            $data['cart'] = $cart;
+            $data = $cart;
         }
         return $data;
     }
 
     protected function getCartData()
     {
-        return $this->helper.getCartData();
+        return $this->helper->getCartData();
     }
 
 }
