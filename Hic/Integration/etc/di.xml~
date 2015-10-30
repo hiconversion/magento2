@@ -1,4 +1,7 @@
 <config>
+<!--    <type name="Magento\Framework\View\Element\AbstractBlock">
+       <plugin name="hic_plugin" type="\Hic\Integration\Model\Plugin" sortOrder="1" />
+    </type> -->
     <type name="Magento\Framework\View\Page\Config\Renderer">
        <plugin name="hic_plugin" type="\Hic\Integration\Plugin\Plugin" sortOrder="1" />
     </type>

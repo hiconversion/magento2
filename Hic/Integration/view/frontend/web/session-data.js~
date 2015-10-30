@@ -4,8 +4,8 @@ define([
 ], function ($, customerData) {
     'use strict';
 
-    var hicUserData = customerData.get('hicuserdata');
-    var hicCartData = customerData.get('hiccartdata');
+    var hicUserData = customerData.get('hicUserData');
+    var hicCartData = customerData.get('hicCartData');
      
     hicUserData.subscribe(function(user) {
         console.log('user data has updated:',user);

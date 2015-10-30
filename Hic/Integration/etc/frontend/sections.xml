@@ -8,57 +8,57 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
     <action name="checkout/cart/add">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="checkout/cart/delete">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="checkout/cart/updatePost">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="checkout/cart/updateItemOptions">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="checkout/cart/couponPost">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="checkout/cart/estimatePost">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="checkout/cart/estimateUpdatePost">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="checkout/onepage/saveOrder">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="checkout/sidebar/removeItem">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="checkout/sidebar/updateItemQty">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="rest/*/V1/carts/*/payment-information">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="rest/*/V1/guest-carts/*/payment-information">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="rest/*/V1/guest-carts/*/selected-payment-method">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="rest/*/V1/carts/*/selected-payment-method">
-        <section name="hicdata"/>
+        <section name="hiccartdata"/>
     </action>
     <action name="customer/account/logout">
-        <section name="hicdata"/>
+        <section name="hicuserdata"/>
     </action>
     <action name="customer/account/loginPost">
-        <section name="hicdata"/>
+        <section name="hicuserdata"/>
     </action>
     <action name="customer/account/createPost">
-        <section name="hicdata"/>
+        <section name="hicuserdata"/>
     </action>
     <action name="customer/ajax/login">
-        <section name="hicdata"/>
+        <section name="hicuserdata"/>
     </action>
 </config>

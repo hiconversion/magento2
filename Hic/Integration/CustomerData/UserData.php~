@@ -5,15 +5,12 @@ namespace Hic\Integration\CustomerData;
 use Magento\Customer\CustomerData\SectionSourceInterface;
 
 
-class HicData extends \Magento\Framework\Object implements SectionSourceInterface
+class UserData extends \Magento\Framework\Object implements SectionSourceInterface
 {
 
     protected $helper;
    
     protected $logger;
-
-    protected $sessionData;
-   
     public function __construct(
         \Hic\Integration\Helper\Helper $helper,
         \Psr\Log\LoggerInterface $logger,

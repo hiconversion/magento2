@@ -11,22 +11,18 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
 
     protected $scopeConfig;
 
-    protected $objectManager;
+    protected $hicModel;
 
 
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Hic\Integration\Model\Data $hicModel,
         \Magento\Framework\ObjectManagerInterface $objectManager
 
     ) {
         $this->scopeConfig = $scopeConfig;
-        $this->objectManager = $objectManager;
+        $this->hicModel = $hicModel;
     }
-
-    private function _createModel() 
-    {
-        return $this->objectManager->create('Hic\Integration\Model\Data');
-    } 
   
     public function getSiteId()
     {
@@ -38,35 +34,36 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->scopeConfig->getValue(self::SETTINGS_ENABLED);
     }
 
-    public function hicPageData()
+    public function getPageData()
     {
-        $model = $this->_createModel()->populatePageData();
-
-        if ($model->isProduct()) {
-            $model->populateProductData();
+        if ($this->hicModel->isProduct()) {
+            $this->hicModel->populateProductData();
         }
 
-        return $model;
+        return $this->hicModel;
     }
     
-    public function hicSessionData()
+    public function getCartData()
     {
-        $model = $this->_createModel()
-            ->populateCartData()
-            ->populateUserData();
+        $this->hicModel->populateCartData();
 
-        return $model;
+        return $this->hicModel->getData('cart');
     }
 
-    public function hicNeverData()
+    public function getUserData()
     {
-        $model = $this->_createModel();
-        
-        if ($model->isConfirmation()) { 
-            $model->populateOrderData();
+        $this->hicModel->populateUserData();
+
+        return $this->hicModel->getData('user');
+    }
+
+    public function getOrderData()
+    {
+        if ($this->hicModel->isConfirmation()) { 
+            $this->hicModel->populateOrderData();
         }
             
 
-        return $model;
+        return $this->hicModel;
     }
 }

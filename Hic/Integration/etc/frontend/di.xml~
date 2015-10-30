@@ -2,11 +2,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
    
-<!--    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
+    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
         <arguments>
             <argument name="sectionSourceMap" xsi:type="array">
-                <item name="hicdata" xsi:type="string">Hic\Integration\CustomerData\HicData</item>
+                <item name="hicCartData" xsi:type="string">Hic\Integration\CustomerData\CartData</item>
+                <item name="hicUserData" xsi:type="string">Hic\Integration\CustomerData\UserData</item>
             </argument>
         </arguments>
-    </type> -->
+    </type>
 </config>

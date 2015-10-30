@@ -27,13 +27,11 @@ class Plugin
     public function afterRenderHeadContent(\Magento\Framework\View\Page\Config\Renderer $subject, $html)
     { 
         $tagAlways = $this->_getBlockHtml('headAlways.phtml'); 
-        
-        $tagSession = $this->_getBlockHtml('headSession.phtml'); 
   
         $tagPage = $this->_getBlockHtml('headPage.phtml');   
      
         $tagNever = $this->_getBlockHtml('headNever.phtml');
 
-        return $tagAlways . $tagSession . $tagPage . $tagNever . $html;
+        return $tagAlways . $tagPage . $tagNever . $html;
     }
 }

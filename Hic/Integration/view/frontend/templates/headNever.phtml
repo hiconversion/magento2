@@ -2,7 +2,7 @@
 
 
 $helper = $this->helper('Hic\Integration\Helper\Helper');
-$hic_data = $helper->hicNeverData();
+$hic_data = $helper->getOrderData();
 ?>
 <?php if($helper->isEnabled()):?>
     <?php if(isset($hic_data)):?>
