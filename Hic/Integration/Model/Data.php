@@ -189,25 +189,23 @@ class Data extends \Magento\Framework\Model\AbstractModel
     {
         $cartQuote = $this->cart->getQuote();
   
-        if ($cartQuote->getItemsCount() > 0) {
-            $data = array();
-            if ($cartQuote->getSubtotal()) {
-                $data['st'] = (float)$cartQuote->getSubtotal();
-            }
-            if ($cartQuote->getGrandTotal()) {
-                $data['tt'] = (float)$cartQuote->getGrandTotal();
-            }
-            if ($cartQuote->getItemsCount()) {
-                $data['qt'] = (float)$cartQuote->getItemsQty();
-            }
-            if ($cartQuote->getStoreCurrencyCode()) {
-                $data['cu'] = $cartQuote->getStoreCurrencyCode();
-            }
-            $data['li'] = $this
-                ->_getCartItems($cartQuote->getAllVisibleItems(), false);
-            $this->setCart($data);
-                
+        $data = array();
+        if ($cartQuote->getSubtotal()) {
+            $data['st'] = (float)$cartQuote->getSubtotal();
         }
+        if ($cartQuote->getGrandTotal()) {
+            $data['tt'] = (float)$cartQuote->getGrandTotal();
+        }
+        if ($cartQuote->getItemsCount()) {
+            $data['qt'] = (float)$cartQuote->getItemsQty();
+        }
+        if ($cartQuote->getStoreCurrencyCode()) {
+            $data['cu'] = $cartQuote->getStoreCurrencyCode();
+        }
+        $data['li'] = $this
+            ->_getCartItems($cartQuote->getAllVisibleItems(), false);
+        $this->setCart($data);
+          
         return $this;
     }
 

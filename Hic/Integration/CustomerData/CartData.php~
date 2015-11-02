@@ -33,6 +33,8 @@ class CartData extends \Magento\Framework\Object implements SectionSourceInterfa
             if (null !== $cart) {
                 $data = $cart;
             }
+        } else {
+            $data['disabled'] = true;
         }
         return $data;
     }

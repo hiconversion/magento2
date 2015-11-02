@@ -32,6 +32,8 @@ class UserData extends \Magento\Framework\Object implements SectionSourceInterfa
             if (null !== $user) {
                 $data = $user;
             }
+        } else {
+           $data['disabled' => true];
         }
         return $data;
     }

@@ -34,7 +34,7 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->scopeConfig->getValue(self::SETTINGS_ENABLED);
     }
 
-    public function hicPageData()
+    public function getPageData()
     {
         if ($this->hicModel->isProduct()) {
             $this->hicModel->populateProductData();
@@ -57,7 +57,7 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->hicModel->getData('user');
     }
 
-    public function hicNeverData()
+    public function getOrderData()
     {
         if ($this->hicModel->isConfirmation()) { 
             $this->hicModel->populateOrderData();

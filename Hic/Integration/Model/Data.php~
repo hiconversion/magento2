@@ -188,8 +188,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
     public function populateCartData()
     {
         $cartQuote = $this->cart->getQuote();
-        $this->logger->addDebug(var_export($cartQuote->debug()));
-        echo(time());
+  
         if ($cartQuote->getItemsCount() > 0) {
             $data = array();
             if ($cartQuote->getSubtotal()) {

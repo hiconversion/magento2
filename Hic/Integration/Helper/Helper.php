@@ -40,6 +40,8 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
             $this->hicModel->populateProductData();
         }
 
+        $this->hicModel->populatePageData();
+
         return $this->hicModel;
     }
     
