@@ -1,39 +1,110 @@
 <?php
+/**
+ * HiConversion
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * [http://opensource.org/licenses/MIT]
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category Hic
+ * @package Hic_Integration
+ * @Copyright © 2015 HiConversion, Inc. All rights reserved.
+ * @license [http://opensource.org/licenses/MIT] MIT License
+ */
 
 namespace Hic\Integration\Model;
 
+/**
+ * Integration data model
+ *
+ * @category Hic
+ * @package Integration
+ * @author HiConversion <support@hiconversion.com>
+ */
 class Data extends \Magento\Framework\Model\AbstractModel
 {
 
-  
-    protected $logger;
-  
+    /**
+     * @var \Magento\Framework\App\RequestInterface
+     */
     protected $request;
-
+    
+    /**
+     * @var \Magento\Catalog\Helper\Data
+     */
     protected $catalogData;
-
+ 
+    /**
+     * @var \Magento\Catalog\Helper\Product
+     */
     protected $productHelper;
 
+    /**
+     * @var \Magento\Catalog\Api\ProductRepositoryInterface
+     */
     protected $productRepository;
 
+    /**
+     * @var \Magento\Checkout\Model\Cart
+     */
     protected $cart;
 
+    /**
+     * @var \Magento\Framework\Api\SearchCriteriaBuilder
+     */
     protected $searchCriteriaBuilder;
    
+    /**
+     * @var \Magento\Framework\Api\FilterBuilder
+     */
     protected $filterBuilder;
 
+    /**
+     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     */
     protected $customerRepository;
 
+    /**
+     * @var \Magento\Customer\Model\Session
+     */
     protected $customerSession;
 
+    /**
+     * @var \Magento\Sales\Model\Resource\Order\CollectionFactory
+     */
     protected $orderCollectionFactory;
 
+    /**
+     * @var \Magento\Catalog\Model\Resource\Category\Collection\Factory
+     */
     protected $categoryCollectionFactory;
 
+    /**
+     * @var \Magento\Checkout\Model\Session
+     */
     protected $checkoutSession;
 
+    /**
+     * @param \Magento\Framework\App\RequestInterface $request
+     * @param \Magento\Catalog\Helper\Data $catalogData
+     * @param \Magento\Catalog\Helper\Product $productHelper
+     * @param \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
+     * @param \Magento\Checkout\Model\Cart $cart
+     * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param \Magento\Framework\Api\FilterBuilder $filterBuilder
+     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
+     * @param \Magento\Customer\Model\Session $customerSession
+     * @param \Magento\Sales\Model\Resource\Order\CollectionFactory $orderCollectionFactory
+     * @param \Magento\Catalog\Model\Resource\Category\Collection\Factory $categoryCollectionFactory
+     * @param \Magento\Checkout\Model\Session $checkoutSession
+     */
     public function __construct(
-        \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\App\RequestInterface $request,
         \Magento\Catalog\Helper\Data $catalogData,
         \Magento\Catalog\Helper\Product $productHelper,
@@ -47,7 +118,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
         \Magento\Catalog\Model\Resource\Category\Collection\Factory $categoryCollectionFactory,
         \Magento\Checkout\Model\Session $checkoutSession
     ) {
-        $this->logger = $logger;
         $this->request = $request;
         $this->catalogData = $catalogData;
         $this->productHelper = $productHelper;
@@ -62,22 +132,42 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->checkoutSession = $checkoutSession;
     }
 
-    protected function _getRoute()
+    /**
+     * Determines and returns page route
+     *
+     * @return string
+     */
+    protected function getRoute()
     {
         return $this->request->getFullActionName();
     }
 
-
+    /**
+     * Determines if its a product page or not
+     *
+     * @return boolean
+     */
     public function isProduct()
     {
-        return 'catalog_product_view' == $this->_getRoute();
+        return 'catalog_product_view' == $this->getRoute();
     }
 
+     /**
+     * Determines if Confirmation page or not
+     *
+     * @return boolean
+     */
     public function isConfirmation()
     {
-        return 'checkout_onepage_success' == $this->_getRoute();
+        return 'checkout_onepage_success' == $this->getRoute();
     }
 
+     /**
+     * Retrieves page route and breadcrumb info and populates page
+     * attribute
+     *
+     * @return array $this
+     */
     public function populatePageData()
     {
         $crumb = array();
@@ -87,14 +177,21 @@ class Data extends \Magento\Framework\Model\AbstractModel
 
         $this->setPage(
             array(
-                'route' => $this->_getRoute(),
+                'route' => $this->getRoute(),
                 'bc' => $crumb
             )
         );
         return $this;
     }
 
-    protected function _getCategoryNames($product)
+     /**
+     * Returns category names for each product
+     * passed into function
+     *
+     * @param Magento\Catalog\Api\Data\ProductInterface $product
+     * @return array $categoryNames
+     */
+    protected function getCategoryNames($product)
     {
         $catCollection = $this->categoryCollectionFactory->create()
             ->addIdFilter($product->getCategoryIds())
@@ -111,7 +208,15 @@ class Data extends \Magento\Framework\Model\AbstractModel
         
     }
 
-    protected function _getCartItems($items, $isOrder)
+     /**
+     * Returns product information for each cart
+     * item passed into function
+     *
+     * @param array $items
+     * @params boolean $isOrder
+     * @return array $data
+     */
+    protected function getCartItems($items, $isOrder)
     {
         $data = array();
           
@@ -146,15 +251,14 @@ class Data extends \Magento\Framework\Model\AbstractModel
             } else {
                 $info['qt'] = (float)$items[$count]->getQty();
             }
-            //TODO: figure out how to merge this data in so I can create a separate
-            // function to handle getting general production info
+            
             $info['desc'] = strip_tags($product->getDescription());
             $info['id'] = $product->getId();
             $info['url'] = $product->getProductUrl();
             $info['nm'] = $product->getName();
             $info['img'] = $this->productHelper->getImageUrl($product);
             $info['sku'] = $product->getSku();
-            $info['cat'] = $this->_getCategoryNames($product);
+            $info['cat'] = $this->getCategoryNames($product);
             $data[] = $info;
             $count = $count + 1;
         }
@@ -162,18 +266,28 @@ class Data extends \Magento\Framework\Model\AbstractModel
        
     }
 
-    //TODO: we may need to limit this further but this is one to one with 1.x magento extension
-    protected function _getOrders($customerId)
+     /**
+     * Retrieves all orders for a given customer id
+     * 
+     * @param int $customerId
+     * @return \Magento\Sales\Api\Data\OrderInterface[] Array of items 
+     */
+    protected function getOrders($customerId)
     {
         return $this->orderCollectionFactory->create()
             ->addAttributeToFilter('customer_id', $customerId);
     }
 
+    /**
+     * Retrieves product information and populates product attribute
+     *
+     * @return array $this
+     */
     public function populateProductData()
     {
         $currentProduct = $this->catalogData->getProduct();
         if ($currentProduct) {
-            $data['cat'] = $this->_getCategoryNames($currentProduct);
+            $data['cat'] = $this->getCategoryNames($currentProduct);
             $data['id']  = $currentProduct->getId();
             $data['nm']  = $currentProduct->getName();
             $data['url'] = $this->productHelper->getProductUrl($currentProduct);
@@ -185,6 +299,11 @@ class Data extends \Magento\Framework\Model\AbstractModel
         return $this;
     }
 
+    /**
+     * Retrieves cart information and populates cart attribute
+     *
+     * @return array $this
+     */
     public function populateCartData()
     {
         $cartQuote = $this->cart->getQuote();
@@ -203,14 +322,18 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $data['cu'] = $cartQuote->getStoreCurrencyCode();
         }
         $data['li'] = $this
-            ->_getCartItems($cartQuote->getAllVisibleItems(), false);
+            ->getCartItems($cartQuote->getAllVisibleItems(), false);
         $this->setCart($data);
           
         return $this;
     }
 
     
-
+    /**
+     * Retrieves user information and populates user attribute
+     *
+     * @return array $this
+     */
     public function populateUserData()
     {
         $data = array();
@@ -222,7 +345,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         if ($customerId) {
             $customer = $this->customerRepository->getById($customerId);
             if ($customer) {
-                $orders = $this->_getOrders($customerId);
+                $orders = $this->getOrders($customerId);
                 if ($orders) {
                     $data['ht'] = $orders->getSize() > 0;
                 }
@@ -246,6 +369,11 @@ class Data extends \Magento\Framework\Model\AbstractModel
         return $this;
     }
 
+    /**
+     * Retrieves order information and populates tr attribute
+     *
+     * @return array $this
+     */
     public function populateOrderData()
     {
         $order = $this->checkoutSession->getLastRealOrder();
@@ -276,7 +404,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
                 $transaction['ds'] = -1 * $order->getDiscountAmount();
             }
             $transaction['li'] = $this
-                ->_getCartItems($order->getAllVisibleItems(), false);
+                ->getCartItems($order->getAllVisibleItems(), false);
             $transaction['sh'] = (float)$order->getShippingAmount();
             $transaction['shm'] = $order->getShippingMethod()
                 ? $order->getShippingMethod() : '';

@@ -1,7 +1,7 @@
 <script type="text/x-magento-init">
 {
   "*": {
-      "Hic_Integration/session-data": {}
+      "Hic_Integration/hic-session-data": {}
   }
 }
 </script>

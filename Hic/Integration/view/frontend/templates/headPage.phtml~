@@ -6,9 +6,7 @@ $helper = $this->helper('Hic\Integration\Helper\Helper');
 <?php if($helper->isEnabled()):?>
 <?php
 $hic_data = $helper->getPageData();
-
 ?>
-
 
 <script id="hiconversion_head_page" type="text/javascript">
      var __hic = __hic || {};
