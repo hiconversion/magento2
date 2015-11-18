@@ -12,8 +12,6 @@
  * obtain it through the world-wide-web, please send an email
  * to license@magentocommerce.com so we can send you a copy immediately.
  *
- * @category Hic
- * @package Hic_Integration
  * @Copyright © 2015 HiConversion, Inc. All rights reserved.
  * @license [http://opensource.org/licenses/MIT] MIT License
  */
@@ -23,8 +21,6 @@ namespace Hic\Integration\Model;
 /**
  * Integration data model
  *
- * @category Hic
- * @package Integration
  * @author HiConversion <support@hiconversion.com>
  */
 class Data extends \Magento\Framework\Model\AbstractModel

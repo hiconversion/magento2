@@ -50,9 +50,9 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
     protected $hicModel;
 
     /**
-     * @param ScopeConfigInterface $scopeConfig
-     * @param Data $hicModel
-     * @param ObjectManagerInterface $objectManager
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Hic\Integration\Model\Data $hicModel
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
      */
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,

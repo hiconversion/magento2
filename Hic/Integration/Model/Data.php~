@@ -209,8 +209,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
     }
 
      /**
-     * Returns product information for each product
-     * passed into function
+     * Returns product information for each cart
+     * item passed into function
      *
      * @param array $items
      * @params boolean $isOrder
@@ -268,9 +268,9 @@ class Data extends \Magento\Framework\Model\AbstractModel
 
      /**
      * Retrieves all orders for a given customer id
-     * 
+     *
      * @param int $customerId
-     * @return \Magento\Sales\Api\Data\OrderInterface[] Array of items 
+     * @return \Magento\Sales\Api\Data\OrderInterface[] Array of items
      */
     protected function getOrders($customerId)
     {

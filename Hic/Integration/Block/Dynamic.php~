@@ -23,7 +23,7 @@ namespace Hic\Integration\Block;
 use Magento\Framework\View\Element\Template;
 
 /**
-* Integration Head Block
+* Dynamic Head Block
 *
 * @category Hic
 * @package Integration

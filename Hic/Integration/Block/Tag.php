@@ -12,8 +12,6 @@
 * obtain it through the world-wide-web, please send an email
 * to license@magentocommerce.com so we can send you a copy immediately.
 *
-* @category Hic
-* @package Hic_Integration
 * @Copyright © 2015 HiConversion, Inc. All rights reserved.
 * @license [http://opensource.org/licenses/MIT] MIT License
 */
@@ -25,8 +23,6 @@ use Magento\Framework\View\Element\Template;
 /**
 * Tag Head Block
 *
-* @category Hic
-* @package Integration
 * @author HiConversion <support@hiconversion.com>
 */
 class Tag extends Template

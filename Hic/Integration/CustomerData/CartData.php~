@@ -33,12 +33,12 @@ class CartData extends \Magento\Framework\Object implements SectionSourceInterfa
 {
 
     /**
-     * @var Helper
+     * @var \Hic\Integration\Helper\Helper
      */
     protected $helper;
    
     /**
-     * Helper $helper
+     * \Hic\Integration\Helper\Helper $helper
      * array $data
      */
     public function __construct(
