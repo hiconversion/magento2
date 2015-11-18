@@ -268,9 +268,9 @@ class Data extends \Magento\Framework\Model\AbstractModel
 
      /**
      * Retrieves all orders for a given customer id
-     * 
+     *
      * @param int $customerId
-     * @return \Magento\Sales\Api\Data\OrderInterface[] Array of items 
+     * @return \Magento\Sales\Api\Data\OrderInterface[] Array of items
      */
     protected function getOrders($customerId)
     {
