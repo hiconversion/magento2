@@ -4,7 +4,6 @@ namespace Hic\Integration\CustomerData;
 
 use Magento\Customer\CustomerData\SectionSourceInterface;
 
-
 class UserData extends \Magento\Framework\Object implements SectionSourceInterface
 {
 
@@ -25,15 +24,15 @@ class UserData extends \Magento\Framework\Object implements SectionSourceInterfa
      * {@inheritdoc}
      */
     public function getSectionData()
-    {   
-        $data = [];        
+    {
+        $data = [];
         if ($this->helper->isEnabled()) {
-            $user = $this->getUserData(); 
+            $user = $this->getUserData();
             if (null !== $user) {
                 $data = $user;
             }
         } else {
-           $data["disabled"] = true;
+            $data["disabled"] = true;
         }
         return $data;
     }
@@ -42,5 +41,4 @@ class UserData extends \Magento\Framework\Object implements SectionSourceInterfa
     {
         return $this->helper->getUserData();
     }
-
 }

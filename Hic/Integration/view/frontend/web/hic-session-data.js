@@ -4,15 +4,17 @@ define([
 ], function ($, customerData) {
     'use strict';
 
-    function writeWindowObject(name, data) {
+    function writeWindowObject(name, data)
+    {
         if (data && !$.isArray(data) && !$.isEmptyObject(data)) {
             window.__hic = window.__hic || {};
             window.__hic.data = window.__hic.data || {};
             window.__hic.data[name] = data;
-        } 
+        }
     }
 
-    function isEnabled(dataObject) {
+    function isEnabled(dataObject)
+    {
         return !(dataObject && dataObject.disabled);
     }
 
@@ -29,12 +31,12 @@ define([
         writeWindowObject('cart', cart);
 
      
-        hicUserData.subscribe(function(user) {
+        hicUserData.subscribe(function (user) {
             writeWindowObject('user', user);
         });
     
 
-        hicCartData.subscribe(function(cart) {
+        hicCartData.subscribe(function (cart) {
             writeWindowObject('cart', cart);
         });
     }

@@ -3,9 +3,10 @@
 namespace Hic\Integration\Model;
 
 class Data extends \Magento\Framework\Model\AbstractModel
-{ 
+{
+
   
-    protected $logger; 
+    protected $logger;
   
     protected $request;
 
@@ -45,7 +46,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         \Magento\Sales\Model\Resource\Order\CollectionFactory $orderCollectionFactory,
         \Magento\Catalog\Model\Resource\Category\Collection\Factory $categoryCollectionFactory,
         \Magento\Checkout\Model\Session $checkoutSession
-   ) {
+    ) {
         $this->logger = $logger;
         $this->request = $request;
         $this->catalogData = $catalogData;
@@ -81,7 +82,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
     {
         $crumb = array();
         foreach ($this->catalogData->getBreadcrumbPath() as $item) {
-          $crumb[] = $item['label'];
+            $crumb[] = $item['label'];
         }
 
         $this->setPage(
@@ -103,7 +104,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $categoryNames = array();
  
         foreach ($catCollection as $category) {
-            
             $categoryNames[] = $category->getName();
         }
  
@@ -214,34 +214,34 @@ class Data extends \Magento\Framework\Model\AbstractModel
     public function populateUserData()
     {
         $data = array();
-	$data['auth'] = $this->customerSession->isLoggedIn();
-	$data['ht'] = false;
-	$data['nv'] = true;
-	$data['cg'] = $this->customerSession->getCustomerGroupId();
+        $data['auth'] = $this->customerSession->isLoggedIn();
+        $data['ht'] = false;
+        $data['nv'] = true;
+        $data['cg'] = $this->customerSession->getCustomerGroupId();
         $customerId = $this->customerSession->getId();
-	if ($customerId) {
+        if ($customerId) {
             $customer = $this->customerRepository->getById($customerId);
             if ($customer) {
-	        $orders = $this->_getOrders($customerId);
+                $orders = $this->_getOrders($customerId);
                 if ($orders) {
-	    	    $data['ht'] = $orders->getSize() > 0;
-	        }
-	        if ($customer->getDob()) {
-	            $data['bday'] = $customer->getDob();
-	        }
-	        if ($customer->getGender()) {
-	            $data['gndr'] = $customer->getGender();
-	        }
-	        if ($customer->getEmail()) {
-	            $data['email'] = $customer->getEmail();
-	        }
-	        $data['id'] = $customer->getId();
-	        $data['nv'] = false;
-	        $data['nm'] = trim($customer->getFirstname()) . ' ' . trim($customer->getLastname());
-	        $data['since'] = $customer->getCreatedAt();
-	    }
+                    $data['ht'] = $orders->getSize() > 0;
+                }
+                if ($customer->getDob()) {
+                    $data['bday'] = $customer->getDob();
+                }
+                if ($customer->getGender()) {
+                    $data['gndr'] = $customer->getGender();
+                }
+                if ($customer->getEmail()) {
+                    $data['email'] = $customer->getEmail();
+                }
+                $data['id'] = $customer->getId();
+                $data['nv'] = false;
+                $data['nm'] = trim($customer->getFirstname()) . ' ' . trim($customer->getLastname());
+                $data['since'] = $customer->getCreatedAt();
+            }
         }
-	$this->setUser($data);
+        $this->setUser($data);
         
         return $this;
     }
@@ -251,7 +251,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $order = $this->checkoutSession->getLastRealOrder();
         
         if ($order) {
-           if ($order->getIncrementId()) {
+            if ($order->getIncrementId()) {
                 $transaction['id'] = $order->getIncrementId();
             }
             if ($order->getOrderCurrencyCode()) {

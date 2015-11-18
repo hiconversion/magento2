@@ -2,7 +2,6 @@
 
 namespace Hic\Integration\Helper;
 
-
 class Helper extends \Magento\Framework\App\Helper\AbstractHelper
 {
     const SETTINGS_ENABLED = 'hiconversion/configuration/enabled';
@@ -18,7 +17,6 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Hic\Integration\Model\Data $hicModel,
         \Magento\Framework\ObjectManagerInterface $objectManager
-
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->hicModel = $hicModel;
@@ -61,7 +59,7 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getOrderData()
     {
-        if ($this->hicModel->isConfirmation()) { 
+        if ($this->hicModel->isConfirmation()) {
             $this->hicModel->populateOrderData();
         }
             

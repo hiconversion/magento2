@@ -8,15 +8,15 @@ class Plugin
 
     private $objectManager;
 
-    public function __construct (
+    public function __construct(
         \Psr\Log\LoggerInterface $logger,
-        \Magento\Framework\ObjectManagerInterface $objectManager        
+        \Magento\Framework\ObjectManagerInterface $objectManager
     ) {
         $this->logger = $logger;
         $this->objectManager = $objectManager;
     }
 
-    public function _getBlockHtml($templateName) 
+    public function _getBlockHtml($templateName)
     {
         return $this->objectManager->create('Hic\Integration\Block\Tag')
             ->setTemplate($templateName)
@@ -25,10 +25,10 @@ class Plugin
 
 
     public function afterRenderHeadContent(\Magento\Framework\View\Page\Config\Renderer $subject, $html)
-    { 
-        $tagAlways = $this->_getBlockHtml('headAlways.phtml'); 
+    {
+        $tagAlways = $this->_getBlockHtml('headAlways.phtml');
   
-        $tagPage = $this->_getBlockHtml('headPage.phtml');   
+        $tagPage = $this->_getBlockHtml('headPage.phtml');
      
         $tagNever = $this->_getBlockHtml('headNever.phtml');
 

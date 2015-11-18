@@ -4,7 +4,6 @@ namespace Hic\Integration\CustomerData;
 
 use Magento\Customer\CustomerData\SectionSourceInterface;
 
-
 class CartData extends \Magento\Framework\Object implements SectionSourceInterface
 {
 
@@ -26,9 +25,9 @@ class CartData extends \Magento\Framework\Object implements SectionSourceInterfa
      * {@inheritdoc}
      */
     public function getSectionData()
-    {   
-        $data = [];     
-        if ($this->helper->isEnabled()) {   
+    {
+        $data = [];
+        if ($this->helper->isEnabled()) {
             $cart = $this->getCartData();
             if (null !== $cart) {
                 $data = $cart;
@@ -43,5 +42,4 @@ class CartData extends \Magento\Framework\Object implements SectionSourceInterfa
     {
         return $this->helper->getCartData();
     }
-
 }
