@@ -393,6 +393,9 @@ class Data extends \Magento\Framework\Model\AbstractModel
             if ($order->getGrandTotal()) {
                 $transaction['tt'] = (float)$order->getGrandTotal();
             }
+            if ($order->getTotalQtyOrdered()) {
+                $transaction['qt'] = (float)$order->getTotalQtyOrdered();
+            }
             if ($order->getCouponCode()) {
                 $transaction['coup'] = array($order->getCouponCode());
             }
@@ -400,7 +403,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
                 $transaction['ds'] = -1 * $order->getDiscountAmount();
             }
             $transaction['li'] = $this
-                ->getCartItems($order->getAllVisibleItems(), false);
+                ->getCartItems($order->getAllVisibleItems(), true);
             $transaction['sh'] = (float)$order->getShippingAmount();
             $transaction['shm'] = $order->getShippingMethod()
                 ? $order->getShippingMethod() : '';
