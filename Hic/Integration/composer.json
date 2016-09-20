@@ -1,5 +1,9 @@
 {
 "name": "hiconversion/integration",
+"autoload": {
+    "files": [ "registration.php" ]
+ 
+},
 "description": "hiconversion analytics and optimization integration",
 "require": {
     "php": "~5.5.0|~5.6.0",
