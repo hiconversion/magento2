@@ -46,7 +46,7 @@ class HicPlugin
      **/
     protected function getBlockHtml($templateName)
     {
-        return $this->objectManager->create('\Hic\Integration\Block\Tag')
+        return $this->objectManager->create('Magento\Framework\View\Element\Template')
             ->setTemplate('Hic_Integration::' . $templateName)
             ->toHtml();
     }

@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ebc8869-388c-4d94-83fc-e0a5acc6631a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Hic/Integration/view/frontend/web/hic-session-data.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Hic/Integration/Block/Dynamic.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Hic/Integration/Block/Tag.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php" afterPath="$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml" afterPath="$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml" />
     </list>
     <ignored path="Magento2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,16 +27,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="di.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/etc/frontend/di.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="15" column="98" selection-start-line="15" selection-start-column="98" selection-end-line="15" selection-end-column="98" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="sections.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/etc/frontend/sections.xml">
           <provider selected="true" editor-type-id="text-editor">
@@ -43,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="default.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="default.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+            <state relative-caret-position="72">
+              <caret line="4" column="125" selection-start-line="4" selection-start-column="125" selection-end-line="4" selection-end-column="125" />
               <folding />
             </state>
           </provider>
@@ -63,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserData.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserData.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/CustomerData/UserData.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+            <state relative-caret-position="414">
+              <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -76,8 +70,8 @@
       <file leaf-file-name="dynamic.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+            <state relative-caret-position="1134">
+              <caret line="63" column="8" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="8" />
               <folding>
                 <element signature="e#6#598#0#PHP" expanded="true" />
               </folding>
@@ -88,8 +82,8 @@
       <file leaf-file-name="HicPlugin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
+            <state relative-caret-position="270">
+              <caret line="48" column="84" selection-start-line="48" selection-start-column="84" selection-end-line="48" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -130,12 +124,12 @@
         <option value="$PROJECT_DIR$/Hic/Integration/etc/frontend/di.xml" />
         <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml" />
         <option value="$PROJECT_DIR$/Hic/Integration/etc/frontend/sections.xml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml" />
         <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/web/hic-session-data.js" />
         <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php" />
         <option value="$PROJECT_DIR$/Hic/Integration/CustomerData/CartData.php" />
         <option value="$PROJECT_DIR$/Hic/Integration/CustomerData/UserData.php" />
+        <option value="$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php" />
+        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml" />
       </list>
     </option>
   </component>
@@ -387,28 +381,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Magento2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Magento2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hic" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Integration" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Block" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -486,18 +458,18 @@
       <workItem from="1474496861152" duration="439000" />
       <workItem from="1474497302957" duration="1828000" />
       <workItem from="1474499135152" duration="8036000" />
-      <workItem from="1474573596980" duration="2595000" />
+      <workItem from="1474573596980" duration="4079000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12898000" />
+    <option name="totallyTimeSpent" value="14382000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="52" width="1855" height="873" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -603,22 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/Block/Dynamic.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hic/Integration/etc/frontend/di.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -661,24 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-          <folding>
-            <element signature="e#6#598#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="39" column="46" selection-start-line="39" selection-start-column="46" selection-end-line="39" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hic/Integration/CustomerData/CartData.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -689,8 +627,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Hic/Integration/CustomerData/UserData.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
+        <state relative-caret-position="414">
+          <caret line="38" column="32" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/Integration/Block/Dynamic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/Integration/Block/Tag.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="48" column="84" selection-start-line="48" selection-start-column="84" selection-end-line="48" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1134">
+          <caret line="63" column="8" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="8" />
+          <folding>
+            <element signature="e#6#598#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="125" selection-start-line="4" selection-start-column="125" selection-end-line="4" selection-end-column="125" />
           <folding />
         </state>
       </provider>
