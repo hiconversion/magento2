@@ -72,12 +72,12 @@ class Data extends \Magento\Framework\Model\AbstractModel
     protected $customerSession;
 
     /**
-     * @var \Magento\Sales\Model\Resource\Order\CollectionFactory
+     * @var \Magento\Sales\Model\ResourceModel\Order\CollectionFactory
      */
     protected $orderCollectionFactory;
 
     /**
-     * @var \Magento\Catalog\Model\Resource\Category\Collection\Factory
+     * @var \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory
      */
     protected $categoryCollectionFactory;
 
@@ -96,8 +96,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param \Magento\Framework\Api\FilterBuilder $filterBuilder
      * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
      * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Sales\Model\Resource\Order\CollectionFactory $orderCollectionFactory
-     * @param \Magento\Catalog\Model\Resource\Category\Collection\Factory $categoryCollectionFactory
+     * @param \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory
+     * @param \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $categoryCollectionFactory
      * @param \Magento\Checkout\Model\Session $checkoutSession
      */
     public function __construct(
@@ -110,8 +110,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
         \Magento\Framework\Api\FilterBuilder $filterBuilder,
         \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
         \Magento\Customer\Model\Session $customerSession,
-        \Magento\Sales\Model\Resource\Order\CollectionFactory $orderCollectionFactory,
-        \Magento\Catalog\Model\Resource\Category\Collection\Factory $categoryCollectionFactory,
+        \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory,
+        \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $categoryCollectionFactory,
         \Magento\Checkout\Model\Session $checkoutSession
     ) {
         $this->request = $request;

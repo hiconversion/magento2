@@ -21,18 +21,18 @@ namespace Hic\Integration\CustomerData;
 use Magento\Customer\CustomerData\SectionSourceInterface;
 
 /**
- * CartData section source
+ * UserData section source
  *
  * @author HiConversion <support@hiconversion.com>
  */
-class CartData extends \Magento\Framework\Object implements SectionSourceInterface
+class UserData implements SectionSourceInterface
 {
 
     /**
      * @var \Hic\Integration\Helper\Helper
      */
     protected $helper;
-   
+
     /**
      * \Hic\Integration\Helper\Helper $helper
      * array $data
@@ -52,9 +52,9 @@ class CartData extends \Magento\Framework\Object implements SectionSourceInterfa
     {
         $data = [];
         if ($this->helper->isEnabled()) {
-            $cart = $this->getCartData();
-            if (null !== $cart) {
-                $data = $cart;
+            $user = $this->getUserData();
+            if (null !== $user) {
+                $data = $user;
             }
         } else {
             $data["disabled"] = true;
@@ -63,12 +63,12 @@ class CartData extends \Magento\Framework\Object implements SectionSourceInterfa
     }
 
     /**
-     * gets cart data from helper
+     * gets user data from helper
      *
      * @return object
      */
-    protected function getCartData()
+    protected function getUserData()
     {
-        return $this->helper->getCartData();
+        return $this->helper->getUserData();
     }
 }

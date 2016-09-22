@@ -1,13 +1,17 @@
 {
 "name": "hiconversion/integration",
 "autoload": {
-    "files": [ "registration.php" ]
- 
+    "files": [ "registration.php" ],
+    "psr-4": {
+        "Hic\\Integration\\": ""
+    }
 },
 "description": "hiconversion analytics and optimization integration",
 "require": {
-    "php": "~5.5.0|~5.6.0",
-    "magento/framework": "~1.0.0"
+    "php": "~5.6.0|7.0.2|~7.0.6",
+    "magento/module-store": "100.1.*",
+    "magento/module-sales": "100.1.*",
+    "magento/framework": "100.1.*"
 },
 "license": "MIT",
 "type": "magento2-module",
