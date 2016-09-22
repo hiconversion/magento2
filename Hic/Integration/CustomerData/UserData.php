@@ -35,13 +35,10 @@ class UserData implements SectionSourceInterface
 
     /**
      * \Hic\Integration\Helper\Helper $helper
-     * array $data
      */
     public function __construct(
-        \Hic\Integration\Helper\Helper $helper,
-        array $data = []
+        \Hic\Integration\Helper\Helper $helper
     ) {
-        parent::__construct($data);
         $this->helper = $helper;
     }
 

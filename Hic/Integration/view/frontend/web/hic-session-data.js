@@ -1,4 +1,4 @@
-define([
+require([
     'jquery',
     'Magento_Customer/js/customer-data'
 ], function ($, customerData) {
@@ -18,9 +18,9 @@ define([
         return !(dataObject && dataObject.disabled);
     }
 
-    var hicUserData = customerData.get('hicuserdata');
+    var hicUserData = customerData.get('hic-user-data');
     var user = hicUserData();
-    var hicCartData = customerData.get('hiccartdata');
+    var hicCartData = customerData.get('hic-cart-data');
     var cart = hicCartData();
 
     if (isEnabled(user)) {

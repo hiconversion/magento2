@@ -3,4 +3,18 @@
     <type name="Magento\Framework\View\Page\Config\Renderer">
        <plugin name="hic_plugin" type="Hic\Integration\Plugin\HicPlugin" sortOrder="1" />
     </type>
+    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
+        <arguments>
+            <argument name="sectionSourceMap" xsi:type="array">
+                <item name="hic-cart-data" xsi:type="string">Hic\Integration\CustomerData\CartData</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
+        <arguments>
+            <argument name="sectionSourceMap" xsi:type="array">
+                <item name="hic-user-data" xsi:type="string">Hic\Integration\CustomerData\UserData</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
