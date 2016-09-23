@@ -38,22 +38,20 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    private $scopeConfig;
 
     /**
      * @var \Hic\Integration\Model\Data
      */
-    protected $hicModel;
+    private $hicModel;
 
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Hic\Integration\Model\Data $hicModel
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
      */
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Hic\Integration\Model\Data $hicModel,
-        \Magento\Framework\ObjectManagerInterface $objectManager
+        \Hic\Integration\Model\Data $hicModel
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->hicModel = $hicModel;
@@ -126,7 +124,6 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
         if ($this->hicModel->isConfirmation()) {
             $this->hicModel->populateOrderData();
         }
-            
 
         return $this->hicModel;
     }

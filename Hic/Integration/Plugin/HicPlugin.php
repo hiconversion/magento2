@@ -18,6 +18,9 @@
 
 namespace Hic\Integration\Plugin;
 
+use Magento\Framework\ObjectManagerInterface;
+use Magento\Framework\View\Page\Config\Renderer;
+
 /**
  * Plugin for injecting head content at top of head
  *
@@ -27,36 +30,36 @@ class HicPlugin
 {
   
     /**
-     * @var \Magento\Framework\ObjectManagerInterface
+     * @var ObjectManagerInterface
      */
-    private $objectManager;
+    private $manager;
 
     /**
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @param ObjectManagerInterface $objectManager
      */
     public function __construct(
-        \Magento\Framework\ObjectManagerInterface $objectManager
+        ObjectManagerInterface $objectManager
     ) {
-        $this->objectManager = $objectManager;
+        $this->manager = $objectManager;
     }
 
     /**
      * @param string $templateName
      * @return string
      **/
-    protected function getBlockHtml($templateName)
+    private function getBlockHtml($templateName)
     {
-        return $this->objectManager->create('Magento\Framework\View\Element\Template')
+        return $this->manager->create('Magento\Framework\View\Element\Template')
             ->setTemplate('Hic_Integration::' . $templateName)
             ->toHtml();
     }
 
     /**
-     * @param \Magento\Framework\View\Page\Config\Renderer $subject
+     * @param Renderer $subject
      * @param string $html
      * @return string
      */
-    public function afterRenderHeadContent(\Magento\Framework\View\Page\Config\Renderer $subject, $html)
+    public function afterRenderHeadContent(Renderer $subject, $html)
     {
         $tagAlways = $this->getBlockHtml('headAlways.phtml');
 

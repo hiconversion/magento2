@@ -3,7 +3,7 @@
     <option name="myName" value="Project Default" />
     <inspection_tool class="PhpCSValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <option name="CODING_STANDARD" value="Custom" />
-      <option name="CUSTOM_RULESET_PATH" value="/var/www/html/magento2ce/dev/tests/static/testsuite/Magento/Test/Php/_files/phpcs/ruleset.xml" />
+      <option name="CUSTOM_RULESET_PATH" value="$PROJECT_DIR$/../marketplace-eqp/MEQP2" />
     </inspection_tool>
   </profile>
 </component>

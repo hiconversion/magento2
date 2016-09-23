@@ -10,17 +10,11 @@
 "require": {
     "php": "~5.6.0|7.0.2|~7.0.6",
     "magento/module-store": "100.1.*",
+    "magento/module-customer": "100.1.*",
     "magento/module-sales": "100.1.*",
     "magento/framework": "100.1.*"
 },
 "license": "MIT",
 "type": "magento2-module",
-"version": "1.0.0",
-"extra": {
-    "map": [
-        [
-            "*",
-            "Hic/Integration"
-        ]
-    ]
-} }
+"version": "1.0.0"
+}

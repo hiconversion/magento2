@@ -18,6 +18,18 @@
 
 namespace Hic\Integration\Model;
 
+use Magento\Framework\App\RequestInterface;
+use Magento\Catalog\Helper\Data as CatalogHelper;
+use Magento\Catalog\Helper\Product;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Customer\Model\Session as CustomerSession;
+use Magento\Sales\Api\OrderRepositoryInterface;
+use Magento\Catalog\Api\CategoryRepositoryInterface;
+use Magento\Checkout\Model\Session as CheckoutSession;
+
 /**
  * Integration data model
  *
@@ -27,104 +39,96 @@ class Data extends \Magento\Framework\Model\AbstractModel
 {
 
     /**
-     * @var \Magento\Framework\App\RequestInterface
+     * @var RequestInterface
      */
-    protected $request;
+    private $request;
     
     /**
-     * @var \Magento\Catalog\Helper\Data
+     * @var CatalogHelper
      */
-    protected $catalogData;
+    private $catalogData;
  
     /**
-     * @var \Magento\Catalog\Helper\Product
+     * @var Product
      */
-    protected $productHelper;
+    private $productHelper;
 
     /**
-     * @var \Magento\Catalog\Api\ProductRepositoryInterface
+     * @var ProductRepositoryInterface
      */
-    protected $productRepository;
+    private $productRepository;
 
     /**
-     * @var \Magento\Checkout\Model\Cart
+     * @var SearchCriteriaBuilder
      */
-    protected $cart;
-
-    /**
-     * @var \Magento\Framework\Api\SearchCriteriaBuilder
-     */
-    protected $searchCriteriaBuilder;
+    private $searchCriteriaBuilder;
    
     /**
-     * @var \Magento\Framework\Api\FilterBuilder
+     * @var FilterBuilder
      */
-    protected $filterBuilder;
+    private $filterBuilder;
 
     /**
-     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     * @var CustomerRepositoryInterface
      */
-    protected $customerRepository;
+    private $customerRepository;
 
     /**
-     * @var \Magento\Customer\Model\Session
+     * @var CustomerSession
      */
-    protected $customerSession;
+    private $customerSession;
 
     /**
-     * @var \Magento\Sales\Model\ResourceModel\Order\CollectionFactory
+     * @var OrderRepositoryInterface
      */
-    protected $orderCollectionFactory;
+    private $orderRepository;
 
     /**
-     * @var \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory
+     * @var CategoryRepositoryInterface
      */
-    protected $categoryCollectionFactory;
+    private $categoryRepository;
 
     /**
-     * @var \Magento\Checkout\Model\Session
+     * @var CheckoutSession
      */
-    protected $checkoutSession;
+    private $checkoutSession;
 
     /**
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @param \Magento\Catalog\Helper\Data $catalogData
-     * @param \Magento\Catalog\Helper\Product $productHelper
-     * @param \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
-     * @param \Magento\Checkout\Model\Cart $cart
-     * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
-     * @param \Magento\Framework\Api\FilterBuilder $filterBuilder
-     * @param \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository
-     * @param \Magento\Customer\Model\Session $customerSession
-     * @param \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory
-     * @param \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $categoryCollectionFactory
-     * @param \Magento\Checkout\Model\Session $checkoutSession
+     * @param RequestInterface $request
+     * @param CatalogHelper $catalogData
+     * @param Product $productHelper
+     * @param ProductRepositoryInterface $productRepository
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param FilterBuilder $filterBuilder
+     * @param CustomerRepositoryInterface $customerRepository
+     * @param CustomerSession $customerSession
+     * @param OrderRepositoryInterface $orderRepository
+     * @param CategoryRepositoryInterface $categoryRepository
+     * @param CheckoutSession $checkoutSession
      */
     public function __construct(
-        \Magento\Framework\App\RequestInterface $request,
-        \Magento\Catalog\Helper\Data $catalogData,
-        \Magento\Catalog\Helper\Product $productHelper,
-        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
-        \Magento\Checkout\Model\Cart $cart,
-        \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
-        \Magento\Framework\Api\FilterBuilder $filterBuilder,
-        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository,
-        \Magento\Customer\Model\Session $customerSession,
-        \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory,
-        \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $categoryCollectionFactory,
-        \Magento\Checkout\Model\Session $checkoutSession
+        RequestInterface $request,
+        CatalogHelper $catalogData,
+        Product $productHelper,
+        ProductRepositoryInterface $productRepository,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        FilterBuilder $filterBuilder,
+        CustomerRepositoryInterface $customerRepository,
+        CustomerSession $customerSession,
+        OrderRepositoryInterface $orderRepository,
+        CategoryRepositoryInterface $categoryRepository,
+        CheckoutSession $checkoutSession
     ) {
         $this->request = $request;
         $this->catalogData = $catalogData;
         $this->productHelper = $productHelper;
         $this->productRepository = $productRepository;
-        $this->cart = $cart;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->filterBuilder = $filterBuilder;
         $this->customerRepository = $customerRepository;
         $this->customerSession = $customerSession;
-        $this->orderCollectionFactory = $orderCollectionFactory;
-        $this->categoryCollectionFactory = $categoryCollectionFactory;
+        $this->orderRepository = $orderRepository;
+        $this->categoryRepository = $categoryRepository;
         $this->checkoutSession = $checkoutSession;
     }
 
@@ -133,7 +137,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
      *
      * @return string
      */
-    protected function getRoute()
+    private function getRoute()
     {
         return $this->request->getFullActionName();
     }
@@ -162,20 +166,20 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * Retrieves page route and breadcrumb info and populates page
      * attribute
      *
-     * @return array $this
+     * @return $this
      */
     public function populatePageData()
     {
-        $crumb = array();
+        $crumb = [];
         foreach ($this->catalogData->getBreadcrumbPath() as $item) {
             $crumb[] = $item['label'];
         }
 
         $this->setPage(
-            array(
+            [
                 'route' => $this->getRoute(),
                 'bc' => $crumb
-            )
+            ]
         );
         return $this;
     }
@@ -184,24 +188,19 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * Returns category names for each product
      * passed into function
      *
-     * @param Magento\Catalog\Api\Data\ProductInterface $product
+     * @param \Magento\Catalog\Api\Data\ProductInterface $product
      * @return array $categoryNames
      */
-    protected function getCategoryNames($product)
+    private function getCategoryNames($product)
     {
-        $catCollection = $this->categoryCollectionFactory->create()
-            ->addIdFilter($product->getCategoryIds())
-            ->addNameToResult()
-            ->addIsActiveFilter();
         
-        $categoryNames = array();
- 
-        foreach ($catCollection as $category) {
-            $categoryNames[] = $category->getName();
+        $categoryNames = [];
+        foreach ($product->getCategoryIds() as $categoryId) {
+            $category = $this->categoryRepository->get($categoryId);
+            array_push($categoryNames, $category->getName());
         }
  
         return $categoryNames;
-        
     }
 
      /**
@@ -209,15 +208,15 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * item passed into function
      *
      * @param array $items
-     * @params boolean $isOrder
+     * @param boolean $isOrder
      * @return array $data
      */
-    protected function getCartItems($items, $isOrder)
+    private function getCartItems($items, $isOrder)
     {
-        $data = array();
+        $data = [];
           
         // build list of product IDs from either cart or transaction object.
-        $productIds = array();
+        $productIds = [];
         foreach ($items as $item) {
             $productIds[] = $item->getProduct()->getId();
         }
@@ -237,7 +236,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
  
         $count = 0;
         foreach ($products as $product) {
-            $info = array();
+            $info = [];
             $info['ds'] = (float)$items[$count]->getDiscountAmount();
             $info['tx'] = (float)$items[$count]->getTaxAmount();
             $info['pr'] = (float)$items[$count]->getRowTotalInclTax();
@@ -247,19 +246,21 @@ class Data extends \Magento\Framework\Model\AbstractModel
             } else {
                 $info['qt'] = (float)$items[$count]->getQty();
             }
-            
-            $info['desc'] = strip_tags($product->getDescription());
+            if (is_callable($product->getDescription)) {
+                $info['desc'] = strip_tags($product->getDescription());
+            }
             $info['id'] = $product->getId();
-            $info['url'] = $product->getProductUrl();
+            if (is_callable($product->getProductUrl)) {
+                $info['url'] = $product->getProductUrl();
+            }
             $info['nm'] = $product->getName();
             $info['img'] = $this->productHelper->getImageUrl($product);
             $info['sku'] = $product->getSku();
             $info['cat'] = $this->getCategoryNames($product);
             $data[] = $info;
-            $count = $count + 1;
+            $count ++;
         }
         return $data;
-       
     }
 
      /**
@@ -268,16 +269,18 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param int $customerId
      * @return \Magento\Sales\Api\Data\OrderInterface[] Array of items
      */
-    protected function getOrders($customerId)
+    private function getOrders($customerId)
     {
-        return $this->orderCollectionFactory->create()
-            ->addAttributeToFilter('customer_id', $customerId);
+        $this->searchCriteriaBuilder->addFilter('customer_id', $customerId);
+        $searchCriteria = $this->searchCriteriaBuilder->create();
+        $searchResults = $this->productRepository->getList($searchCriteria);
+        return $searchResults->getItems();
     }
 
     /**
      * Retrieves product information and populates product attribute
      *
-     * @return array $this
+     * @return $this
      */
     public function populateProductData()
     {
@@ -298,23 +301,23 @@ class Data extends \Magento\Framework\Model\AbstractModel
     /**
      * Retrieves cart information and populates cart attribute
      *
-     * @return array $this
+     * @return $this
      */
     public function populateCartData()
     {
-        $cartQuote = $this->cart->getQuote();
+        $cartQuote = $this->checkoutSession->getQuote();
   
-        $data = array();
-        if ($cartQuote->getSubtotal()) {
+        $data = [];
+        if (is_callable($cartQuote->getSubtotal)) {
             $data['st'] = (float)$cartQuote->getSubtotal();
         }
-        if ($cartQuote->getGrandTotal()) {
+        if (is_callable($cartQuote->getGrandTotal)) {
             $data['tt'] = (float)$cartQuote->getGrandTotal();
         }
-        if ($cartQuote->getItemsCount()) {
+        if (is_callable($cartQuote->getItemsCount)) {
             $data['qt'] = (float)$cartQuote->getItemsQty();
         }
-        if ($cartQuote->getStoreCurrencyCode()) {
+        if (is_callable($cartQuote->getStoreCurrencyCode)) {
             $data['cu'] = $cartQuote->getStoreCurrencyCode();
         }
         $data['li'] = $this
@@ -323,16 +326,15 @@ class Data extends \Magento\Framework\Model\AbstractModel
           
         return $this;
     }
-
     
     /**
      * Retrieves user information and populates user attribute
      *
-     * @return array $this
+     * @return $this
      */
     public function populateUserData()
     {
-        $data = array();
+        $data = [];
         $data['auth'] = $this->customerSession->isLoggedIn();
         $data['ht'] = false;
         $data['nv'] = true;
@@ -368,7 +370,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
     /**
      * Retrieves order information and populates tr attribute
      *
-     * @return array $this
+     * @return $this
      */
     public function populateOrderData()
     {
@@ -397,7 +399,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
                 $transaction['qt'] = (float)$order->getTotalQtyOrdered();
             }
             if ($order->getCouponCode()) {
-                $transaction['coup'] = array($order->getCouponCode());
+                $transaction['coup'] = [$order->getCouponCode()];
             }
             if ($order->getDiscountAmount() > 0) {
                 $transaction['ds'] = -1 * $order->getDiscountAmount();

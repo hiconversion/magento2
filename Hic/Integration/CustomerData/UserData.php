@@ -31,7 +31,7 @@ class UserData implements SectionSourceInterface
     /**
      * @var \Hic\Integration\Helper\Helper
      */
-    protected $helper;
+    private $helper;
 
     /**
      * \Hic\Integration\Helper\Helper $helper
@@ -64,7 +64,7 @@ class UserData implements SectionSourceInterface
      *
      * @return object
      */
-    protected function getUserData()
+    private function getUserData()
     {
         return $this->helper->getUserData();
     }

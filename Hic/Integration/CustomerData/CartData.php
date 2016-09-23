@@ -31,7 +31,7 @@ class CartData implements SectionSourceInterface
     /**
      * @var \Hic\Integration\Helper\Helper
      */
-    protected $helper;
+    private $helper;
    
     /**
      * \Hic\Integration\Helper\Helper $helper
@@ -64,7 +64,7 @@ class CartData implements SectionSourceInterface
      *
      * @return object
      */
-    protected function getCartData()
+    private function getCartData()
     {
         return $this->helper->getCartData();
     }
