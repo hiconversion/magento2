@@ -18,12 +18,12 @@
 
 $helper = $this->helper('Hic\Integration\Helper\Helper');
 ?>
-<?php if($helper->isEnabled()):?>
+<?php if ($helper->isEnabled()) :?>
 <?php
 $hic_data = $helper->getOrderData();
 ?>
-    <?php if(isset($hic_data)):?>
-        <?php if(null!==$hic_data->getData('tr')):?>
+    <?php if (isset($hic_data)) :?>
+        <?php if (null!==$hic_data->getData('tr')) :?>
 <script id="hiconversion_head_never" type="text/javascript">
     var __hic = __hic || {};
     (function(){

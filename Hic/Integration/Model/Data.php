@@ -246,13 +246,9 @@ class Data extends \Magento\Framework\Model\AbstractModel
             } else {
                 $info['qt'] = (float)$items[$count]->getQty();
             }
-            if (is_callable($product->getDescription)) {
-                $info['desc'] = strip_tags($product->getDescription());
-            }
+            $info['desc'] = strip_tags($product->getDescription());
             $info['id'] = $product->getId();
-            if (is_callable($product->getProductUrl)) {
-                $info['url'] = $product->getProductUrl();
-            }
+            $info['url'] = $this->productHelper->getProductUrl($product);
             $info['nm'] = $product->getName();
             $info['img'] = $this->productHelper->getImageUrl($product);
             $info['sku'] = $product->getSku();
@@ -273,7 +269,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
     {
         $this->searchCriteriaBuilder->addFilter('customer_id', $customerId);
         $searchCriteria = $this->searchCriteriaBuilder->create();
-        $searchResults = $this->productRepository->getList($searchCriteria);
+        $searchResults = $this->orderRepository->getList($searchCriteria);
         return $searchResults->getItems();
     }
 
@@ -308,18 +304,10 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $cartQuote = $this->checkoutSession->getQuote();
   
         $data = [];
-        if (is_callable($cartQuote->getSubtotal)) {
-            $data['st'] = (float)$cartQuote->getSubtotal();
-        }
-        if (is_callable($cartQuote->getGrandTotal)) {
-            $data['tt'] = (float)$cartQuote->getGrandTotal();
-        }
-        if (is_callable($cartQuote->getItemsCount)) {
-            $data['qt'] = (float)$cartQuote->getItemsQty();
-        }
-        if (is_callable($cartQuote->getStoreCurrencyCode)) {
-            $data['cu'] = $cartQuote->getStoreCurrencyCode();
-        }
+        $data['st'] = (float)$cartQuote->getSubtotal();
+        $data['tt'] = (float)$cartQuote->getGrandTotal();
+        $data['qt'] = (float)$cartQuote->getItemsQty();
+        $data['cu'] = $cartQuote->getStoreCurrencyCode();
         $data['li'] = $this
             ->getCartItems($cartQuote->getAllVisibleItems(), false);
         $this->setCart($data);
@@ -345,7 +333,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             if ($customer) {
                 $orders = $this->getOrders($customerId);
                 if ($orders) {
-                    $data['ht'] = $orders->getSize() > 0;
+                    $data['ht'] = count($orders) > 0;
                 }
                 if ($customer->getDob()) {
                     $data['bday'] = $customer->getDob();
