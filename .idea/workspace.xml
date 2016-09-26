@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ebc8869-388c-4d94-83fc-e0a5acc6631a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml" afterPath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml" afterPath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml" afterPath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Hic/LICENSE.txt" />
     </list>
     <ignored path="Magento2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +43,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dynamic.phtml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dynamic.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="417">
@@ -57,14 +55,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HicPlugin.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php">
+      <file leaf-file-name="LICENSE.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Hic/LICENSE.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="936">
-              <caret line="67" column="57" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
-              <folding>
-                <element signature="e#635#680#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="216">
+              <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -156,6 +152,7 @@
         <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml" />
         <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml" />
         <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml" />
+        <option value="$PROJECT_DIR$/Hic/LICENSE.txt" />
       </list>
     </option>
   </component>
@@ -238,6 +235,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Magento2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Magento2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Magento2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hic" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -533,12 +544,12 @@
       <workItem from="1474496861152" duration="439000" />
       <workItem from="1474497302957" duration="1828000" />
       <workItem from="1474499135152" duration="8036000" />
-      <workItem from="1474573596980" duration="22208000" />
+      <workItem from="1474573596980" duration="22560000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32511000" />
+    <option name="totallyTimeSpent" value="32863000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="52" width="1855" height="873" extended-state="0" />
@@ -773,6 +784,14 @@
           <folding>
             <element signature="e#6#598#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/LICENSE.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
