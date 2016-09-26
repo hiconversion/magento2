@@ -2,8 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ebc8869-388c-4d94-83fc-e0a5acc6631a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Hic/Integration/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Hic/LICENSE.txt" afterPath="$PROJECT_DIR$/Hic/Integration/LICENSE.txt" />
+      <change type="DELETED" beforePath="/repo/Magento2/hiconversion_integration-1.0.0.zip" afterPath="" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/CustomerData/CartData.php" afterPath="/repo/Magento2/CustomerData/CartData.php" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/CustomerData/UserData.php" afterPath="/repo/Magento2/CustomerData/UserData.php" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/Helper/Helper.php" afterPath="/repo/Magento2/Helper/Helper.php" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/LICENSE.txt" afterPath="/repo/Magento2/LICENSE.txt" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/Model/Data.php" afterPath="/repo/Magento2/Model/Data.php" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/Plugin/HicPlugin.php" afterPath="/repo/Magento2/Plugin/HicPlugin.php" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/README.md" afterPath="/repo/Magento2/README.md" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/composer.json" afterPath="/repo/Magento2/composer.json" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/etc/adminhtml/system.xml" afterPath="/repo/Magento2/etc/adminhtml/system.xml" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/etc/config.xml" afterPath="/repo/Magento2/etc/config.xml" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/etc/frontend/di.xml" afterPath="/repo/Magento2/etc/frontend/di.xml" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/etc/frontend/sections.xml" afterPath="/repo/Magento2/etc/frontend/sections.xml" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/etc/module.xml" afterPath="/repo/Magento2/etc/module.xml" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/registration.php" afterPath="/repo/Magento2/registration.php" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/view/frontend/layout/default.xml" afterPath="/repo/Magento2/view/frontend/layout/default.xml" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/view/frontend/templates/dynamic.phtml" afterPath="/repo/Magento2/view/frontend/templates/dynamic.phtml" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/view/frontend/templates/headAlways.phtml" afterPath="/repo/Magento2/view/frontend/templates/headAlways.phtml" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/view/frontend/templates/headNever.phtml" afterPath="/repo/Magento2/view/frontend/templates/headNever.phtml" />
+      <change type="MOVED" beforePath="/repo/Magento2/Hic/Integration/view/frontend/templates/headPage.phtml" afterPath="/repo/Magento2/view/frontend/templates/headPage.phtml" />
+      <change type="MODIFICATION" beforePath="/repo/Magento2/.idea/workspace.xml" afterPath="/repo/Magento2/.idea/workspace.xml" />
     </list>
     <ignored path="Magento2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,20 +43,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserData.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/CustomerData/UserData.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="dynamic.phtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml">
+        <entry file="file:///repo/hiconversion-integration/view/frontend/templates/dynamic.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
+            <state relative-caret-position="936">
               <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="e#6#598#0#PHP" expanded="true" />
@@ -46,8 +55,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="default.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///repo/hiconversion-integration/view/frontend/layout/default.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" column="125" selection-start-line="4" selection-start-column="125" selection-end-line="4" selection-end-column="125" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="LICENSE.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/LICENSE.txt">
+        <entry file="file:///repo/hiconversion-integration/LICENSE.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
               <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
@@ -57,7 +76,7 @@
         </entry>
       </file>
       <file leaf-file-name="headAlways.phtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml">
+        <entry file="file:///repo/hiconversion-integration/view/frontend/templates/headAlways.phtml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
               <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
@@ -67,7 +86,7 @@
         </entry>
       </file>
       <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/composer.json">
+        <entry file="file:///repo/hiconversion-integration/composer.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
               <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
@@ -76,8 +95,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/README.md">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file:///repo/hiconversion-integration/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="0">
@@ -90,7 +109,7 @@
         </entry>
       </file>
       <file leaf-file-name="headNever.phtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml">
+        <entry file="file:///repo/hiconversion-integration/view/frontend/templates/headNever.phtml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
               <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
@@ -99,8 +118,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="headPage.phtml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml">
+      <file leaf-file-name="headPage.phtml" pinned="false" current-in-tab="true">
+        <entry file="file:///repo/hiconversion-integration/view/frontend/templates/headPage.phtml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
               <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
@@ -110,7 +129,7 @@
         </entry>
       </file>
       <file leaf-file-name="Helper.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/Helper/Helper.php">
+        <entry file="file:///repo/hiconversion-integration/Helper/Helper.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
@@ -120,7 +139,7 @@
         </entry>
       </file>
       <file leaf-file-name="Data.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hic/Integration/Model/Data.php">
+        <entry file="file:///repo/hiconversion-integration/Model/Data.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3086">
               <caret line="335" column="50" selection-start-line="335" selection-start-column="50" selection-end-line="335" selection-end-column="50" />
@@ -134,30 +153,30 @@
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="/repo/Magento2" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Hiconversion/Integration/Plugin/HicPlugin.php" />
-        <option value="$PROJECT_DIR$/Hiconversion/Integration/view/frontend/layout/default.xml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/etc/frontend/di.xml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/etc/frontend/sections.xml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/web/hic-session-data.js" />
-        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/Model/HicData.php" />
-        <option value="$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php" />
-        <option value="$PROJECT_DIR$/Hic/Integration/CustomerData/CartData.php" />
-        <option value="$PROJECT_DIR$/Hic/Integration/CustomerData/UserData.php" />
-        <option value="$PROJECT_DIR$/Hic/Integration/Helper/Helper.php" />
-        <option value="$PROJECT_DIR$/Hic/Integration/Model/Data.php" />
-        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml" />
-        <option value="$PROJECT_DIR$/Hic/LICENSE.txt" />
-        <option value="$PROJECT_DIR$/Hic/Integration/composer.json" />
-        <option value="$PROJECT_DIR$/Hic/Integration/README.md" />
+        <option value="/repo/Magento2/Hiconversion/Integration/Plugin/HicPlugin.php" />
+        <option value="/repo/Magento2/Hiconversion/Integration/view/frontend/layout/default.xml" />
+        <option value="/repo/Magento2/Hic/Integration/etc/frontend/di.xml" />
+        <option value="/repo/Magento2/Hic/Integration/etc/frontend/sections.xml" />
+        <option value="/repo/Magento2/Hic/Integration/view/frontend/web/hic-session-data.js" />
+        <option value="/repo/Magento2/Hic/Integration/view/frontend/templates/dynamic.phtml" />
+        <option value="/repo/Magento2/Hic/Integration/view/frontend/layout/default.xml" />
+        <option value="/repo/Magento2/Hic/Integration/Model/HicData.php" />
+        <option value="/repo/Magento2/Hic/Integration/Plugin/HicPlugin.php" />
+        <option value="/repo/Magento2/Hic/Integration/CustomerData/CartData.php" />
+        <option value="/repo/Magento2/Hic/Integration/CustomerData/UserData.php" />
+        <option value="/repo/Magento2/Hic/Integration/Helper/Helper.php" />
+        <option value="/repo/Magento2/Hic/Integration/Model/Data.php" />
+        <option value="/repo/Magento2/Hic/Integration/view/frontend/templates/headPage.phtml" />
+        <option value="/repo/Magento2/Hic/Integration/view/frontend/templates/headNever.phtml" />
+        <option value="/repo/Magento2/Hic/Integration/view/frontend/templates/headAlways.phtml" />
+        <option value="/repo/Magento2/Hic/LICENSE.txt" />
+        <option value="/repo/Magento2/Hic/Integration/composer.json" />
+        <option value="/repo/Magento2/Hic/Integration/README.md" />
       </list>
     </option>
   </component>
@@ -232,32 +251,8 @@
               <option name="myItemId" value="Magento2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Magento2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Magento2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Magento2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Magento2" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hic" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Integration" />
+              <option name="myItemId" value="hiconversion-integration" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -275,8 +270,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Hic/Integration" />
-      <recent name="$PROJECT_DIR$" />
+      <recent name="/repo/Magento2" />
+      <recent name="/repo/Magento2/hiconversion-integration" />
+      <recent name="/repo/Magento2/Hic/Integration" />
     </key>
   </component>
   <component name="RunManager">
@@ -340,21 +336,22 @@
       <workItem from="1474496861152" duration="439000" />
       <workItem from="1474497302957" duration="1828000" />
       <workItem from="1474499135152" duration="8036000" />
-      <workItem from="1474573596980" duration="24935000" />
+      <workItem from="1474573596980" duration="25979000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35238000" />
+    <option name="totallyTimeSpent" value="36282000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="52" width="1855" height="873" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32957393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -365,7 +362,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -386,7 +382,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/etc/frontend/di.xml">
+    <entry file="file:///repo/hiconversion-integration/etc/frontend/di.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -394,7 +390,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/etc/frontend/sections.xml">
+    <entry file="file:///repo/hiconversion-integration/etc/frontend/sections.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
           <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
@@ -402,7 +398,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml">
+    <entry file="file:///repo/hiconversion-integration/view/frontend/layout/default.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
@@ -410,7 +406,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/Block/Dynamic.php">
+    <entry file="file:///repo/Magento2/Hic/Integration/Block/Dynamic.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -418,7 +414,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/CustomerData/CartData.php">
+    <entry file="file:///repo/hiconversion-integration/CustomerData/CartData.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="31" column="42" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
@@ -426,22 +422,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/view/frontend/layout/default.xml" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/Block/Dynamic.php" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/Block/Tag.php" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/view/frontend/layout/default.xml" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/view/frontend/web/hic-session-data.js" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/view/frontend/templates/headPage.phtml" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/etc/module.xml" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/etc/config.xml" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/Block/Dynamic.php" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/Block/Tag.php" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/Plugin/HicPlugin.php" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/etc/frontend/sections.xml" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/etc/frontend/di.xml" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/etc/adminhtml/system.xml" />
-    <entry file="file://$PROJECT_DIR$/Hiconversion/Integration/view/frontend/layout/default.xml" />
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/etc/config.xml">
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/view/frontend/layout/default.xml" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/Block/Dynamic.php" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/Block/Tag.php" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/view/frontend/layout/default.xml" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/view/frontend/web/hic-session-data.js" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/view/frontend/templates/headPage.phtml" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/etc/module.xml" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/etc/config.xml" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/Block/Dynamic.php" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/Block/Tag.php" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/Plugin/HicPlugin.php" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/etc/frontend/sections.xml" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/etc/frontend/di.xml" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/etc/adminhtml/system.xml" />
+    <entry file="file:///repo/Magento2/Hiconversion/Integration/view/frontend/layout/default.xml" />
+    <entry file="file:///repo/hiconversion-integration/etc/config.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -449,7 +445,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/web/hic-session-data.js">
+    <entry file="file:///repo/Magento2/Hic/Integration/view/frontend/web/hic-session-data.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
@@ -457,7 +453,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/Block/Dynamic.php">
+    <entry file="file:///repo/Magento2/Hic/Integration/Block/Dynamic.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="44" />
@@ -465,7 +461,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/Block/Tag.php">
+    <entry file="file:///repo/Magento2/Hic/Integration/Block/Tag.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -473,7 +469,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/etc/frontend/sections.xml">
+    <entry file="file:///repo/hiconversion-integration/etc/frontend/sections.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="579">
           <caret line="55" column="36" selection-start-line="55" selection-start-column="36" selection-end-line="55" selection-end-column="36" />
@@ -481,7 +477,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/etc/frontend/di.xml">
+    <entry file="file:///repo/hiconversion-integration/etc/frontend/di.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="98" selection-start-line="15" selection-start-column="98" selection-end-line="15" selection-end-column="98" />
@@ -489,15 +485,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/layout/default.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="125" selection-start-line="4" selection-start-column="125" selection-end-line="4" selection-end-column="125" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php">
+    <entry file="file:///repo/hiconversion-integration/Plugin/HicPlugin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
           <caret line="67" column="57" selection-start-line="67" selection-start-column="57" selection-end-line="67" selection-end-column="57" />
@@ -507,7 +495,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/CustomerData/CartData.php">
+    <entry file="file:///repo/hiconversion-integration/CustomerData/CartData.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="543">
           <caret line="66" column="11" selection-start-line="66" selection-start-column="11" selection-end-line="66" selection-end-column="11" />
@@ -515,7 +503,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/CustomerData/UserData.php">
+    <entry file="file:///repo/hiconversion-integration/CustomerData/UserData.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="33" column="11" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
@@ -523,7 +511,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/Helper/Helper.php">
+    <entry file="file:///repo/hiconversion-integration/Helper/Helper.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
@@ -531,7 +519,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/Model/Data.php">
+    <entry file="file:///repo/hiconversion-integration/Model/Data.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3086">
           <caret line="335" column="50" selection-start-line="335" selection-start-column="50" selection-end-line="335" selection-end-column="50" />
@@ -541,41 +529,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="e#6#598#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/LICENSE.txt">
+    <entry file="file:///repo/hiconversion-integration/LICENSE.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
@@ -583,7 +537,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/composer.json">
+    <entry file="file:///repo/hiconversion-integration/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
@@ -591,7 +545,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/README.md">
+    <entry file="file:///repo/hiconversion-integration/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
@@ -599,6 +553,48 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///repo/hiconversion-integration/view/frontend/layout/default.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="125" selection-start-line="4" selection-start-column="125" selection-end-line="4" selection-end-column="125" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///repo/hiconversion-integration/view/frontend/templates/dynamic.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#598#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///repo/hiconversion-integration/view/frontend/templates/headAlways.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///repo/hiconversion-integration/view/frontend/templates/headNever.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///repo/hiconversion-integration/view/frontend/templates/headPage.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+          <folding />
         </state>
       </provider>
     </entry>
