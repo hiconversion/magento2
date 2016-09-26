@@ -1,5 +1,5 @@
 {
-"name": "hiconversion/integration",
+"name": "hiconversion/module-integration",
 "autoload": {
     "files": [ "registration.php" ],
     "psr-4": {
@@ -9,10 +9,10 @@
 "description": "hiconversion analytics and optimization integration",
 "require": {
     "php": "~5.6.0|7.0.2|~7.0.6",
-    "magento/module-store": "100.1.*",
-    "magento/module-customer": "100.1.*",
-    "magento/module-sales": "100.1.*",
-    "magento/framework": "100.1.*"
+    "magento/module-store": "~100.0",
+    "magento/module-customer": "~100.0",
+    "magento/module-sales": "~100.0",
+    "magento/framework": "~100.0"
 },
 "license": "MIT",
 "type": "magento2-module",
