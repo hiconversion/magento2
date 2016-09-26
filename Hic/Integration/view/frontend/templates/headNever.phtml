@@ -29,7 +29,7 @@ $hic_data = $helper->getOrderData();
     (function(){
         try {
             __hic.data = __hic.data || {};
-            __hic.data.tr = <?php echo Zend_Json::encode($hic_data->getData('tr')); ?>;
+            __hic.data.tr = <?php /* @noEscape */ echo Zend_Json::encode($hic_data->getData('tr')); ?>;
         } catch (e) {
         }
     })();

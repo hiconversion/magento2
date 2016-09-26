@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ebc8869-388c-4d94-83fc-e0a5acc6631a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/Helper/Helper.php" afterPath="$PROJECT_DIR$/Hic/Integration/Helper/Helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/Model/Data.php" afterPath="$PROJECT_DIR$/Hic/Integration/Model/Data.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml" afterPath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml" afterPath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml" afterPath="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml" />
@@ -47,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dynamic.phtml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dynamic.phtml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+            <state relative-caret-position="417">
+              <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding>
                 <element signature="e#6#598#0#PHP" expanded="true" />
               </folding>
@@ -74,8 +72,8 @@
       <file leaf-file-name="headAlways.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+            <state relative-caret-position="270">
+              <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -94,8 +92,8 @@
       <file leaf-file-name="headNever.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="288">
+              <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -104,8 +102,8 @@
       <file leaf-file-name="headPage.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
+            <state relative-caret-position="342">
+              <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -121,10 +119,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Data.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Data.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Hic/Integration/Model/Data.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
+            <state relative-caret-position="3086">
               <caret line="335" column="50" selection-start-line="335" selection-start-column="50" selection-end-line="335" selection-end-column="50" />
               <folding>
                 <element signature="e#634#677#0#PHP" expanded="true" />
@@ -144,7 +142,6 @@
         <option value="$PROJECT_DIR$/Hiconversion/Integration/Plugin/HicPlugin.php" />
         <option value="$PROJECT_DIR$/Hiconversion/Integration/view/frontend/layout/default.xml" />
         <option value="$PROJECT_DIR$/Hic/Integration/etc/frontend/di.xml" />
-        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml" />
         <option value="$PROJECT_DIR$/Hic/Integration/etc/frontend/sections.xml" />
         <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/web/hic-session-data.js" />
         <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml" />
@@ -156,6 +153,9 @@
         <option value="$PROJECT_DIR$/Hic/Integration/CustomerData/UserData.php" />
         <option value="$PROJECT_DIR$/Hic/Integration/Helper/Helper.php" />
         <option value="$PROJECT_DIR$/Hic/Integration/Model/Data.php" />
+        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml" />
+        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml" />
+        <option value="$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml" />
       </list>
     </option>
   </component>
@@ -533,12 +533,12 @@
       <workItem from="1474496861152" duration="439000" />
       <workItem from="1474497302957" duration="1828000" />
       <workItem from="1474499135152" duration="8036000" />
-      <workItem from="1474573596980" duration="21218000" />
+      <workItem from="1474573596980" duration="22208000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31521000" />
+    <option name="totallyTimeSpent" value="32511000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="52" width="1855" height="873" extended-state="0" />
@@ -690,16 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
-          <folding>
-            <element signature="e#6#598#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hic/Integration/Plugin/HicPlugin.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
@@ -726,34 +716,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="33" column="45" selection-start-line="33" selection-start-column="45" selection-end-line="33" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Hic/Integration/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -768,10 +734,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Hic/Integration/Model/Data.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
+        <state relative-caret-position="3086">
           <caret line="335" column="50" selection-start-line="335" selection-start-column="50" selection-end-line="335" selection-end-column="50" />
           <folding>
             <element signature="e#634#677#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headPage.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headNever.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="31" column="49" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/headAlways.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Hic/Integration/view/frontend/templates/dynamic.phtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#598#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
