@@ -18,6 +18,8 @@
 
 namespace Hic\Integration\Model;
 
+use Magento\Catalog\Helper\Product\Configuration;
+use Magento\Framework\Api\ExtensionAttributesFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Catalog\Helper\Data as CatalogHelper;
 use Magento\Catalog\Helper\Product;
@@ -26,6 +28,8 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Customer\Model\Session as CustomerSession;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Registry;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Checkout\Model\Session as CheckoutSession;
@@ -52,6 +56,13 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @var Product
      */
     private $productHelper;
+
+    /**
+     * Catalog product configuration
+     *
+     * @var Configuration
+     */
+    protected $productConfig;
 
     /**
      * @var ProductRepositoryInterface
@@ -94,9 +105,13 @@ class Data extends \Magento\Framework\Model\AbstractModel
     private $checkoutSession;
 
     /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param ExtensionAttributesFactory $extensionFactory
      * @param RequestInterface $request
      * @param CatalogHelper $catalogData
      * @param Product $productHelper
+     * @param Configuration $productConfig
      * @param ProductRepositoryInterface $productRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param FilterBuilder $filterBuilder
@@ -107,9 +122,13 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param CheckoutSession $checkoutSession
      */
     public function __construct(
+        Context $context,
+        Registry $registry,
+        ExtensionAttributesFactory $extensionFactory,
         RequestInterface $request,
         CatalogHelper $catalogData,
         Product $productHelper,
+        Configuration $productConfig,
         ProductRepositoryInterface $productRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         FilterBuilder $filterBuilder,
@@ -122,6 +141,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->request = $request;
         $this->catalogData = $catalogData;
         $this->productHelper = $productHelper;
+        $this->productConfig = $productConfig;
         $this->productRepository = $productRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->filterBuilder = $filterBuilder;
@@ -130,6 +150,11 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->orderRepository = $orderRepository;
         $this->categoryRepository = $categoryRepository;
         $this->checkoutSession = $checkoutSession;
+
+        parent::__construct(
+            $context,
+            $registry
+            );
     }
 
     /**
@@ -214,48 +239,43 @@ class Data extends \Magento\Framework\Model\AbstractModel
     private function getCartItems($items, $isOrder)
     {
         $data = [];
-          
-        // build list of product IDs from either cart or transaction object.
-        $productIds = [];
+
         foreach ($items as $item) {
-            $productIds[] = $item->getProduct()->getId();
-        }
+            $product = $item->getProduct();
 
-        $filters = [];
-        $filters[] = $this->filterBuilder
-            ->setField('entity_id')
-            ->setConditionType('in')
-            ->setValue($productIds)
-            ->create();
-        
-        $this->searchCriteriaBuilder->addFilters($filters);
-
-        $searchCriteria = $this->searchCriteriaBuilder->create();
-        $searchResults = $this->productRepository->getList($searchCriteria);
-        $products = $searchResults->getItems();
- 
-        $count = 0;
-        foreach ($products as $product) {
             $info = [];
-            $info['ds'] = (float)$items[$count]->getDiscountAmount();
-            $info['tx'] = (float)$items[$count]->getTaxAmount();
-            $info['pr'] = (float)$items[$count]->getRowTotalInclTax();
-            $info['bpr'] = (float)$items[$count]->getPrice();
+            $info['ds'] = (float)$item->getDiscountAmount();
+            $info['tx'] = (float)$item->getTaxAmount();
+            $info['pr'] = (float)$item->getRowTotalInclTax();
+            $info['bpr'] = (float)$product->getPrice();
             if ($isOrder) {
-                $info['qt'] = (float)$items[$count]->getQtyOrdered();
+                $info['qt'] = (float)$item->getQtyOrdered();
             } else {
-                $info['qt'] = (float)$items[$count]->getQty();
+                $info['qt'] = (float)$item->getQty();
             }
-            $info['desc'] = strip_tags($product->getDescription());
             $info['id'] = $product->getId();
             $info['url'] = $this->productHelper->getProductUrl($product);
             $info['nm'] = $product->getName();
-            $info['img'] = $this->productHelper->getImageUrl($product);
+            $info['img'] = $this->productHelper->getThumbnailUrl($product);
             $info['sku'] = $product->getSku();
             $info['cat'] = $this->getCategoryNames($product);
+
+            $options = $this->productConfig->getOptions($item);
+
+            if ($options && !empty($options)) {
+                $opts = [];
+
+                foreach ($options as $option) {
+                  $formattedValue = $this->productConfig->getFormattedOptionValue($option);
+                  $opts[$option['label']] = $formattedValue['value'];
+                }
+
+                $info['opt'] = $opts;
+            }
+
             $data[] = $info;
-            $count ++;
         }
+
         return $data;
     }
 

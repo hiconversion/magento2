@@ -15,9 +15,12 @@
  * @Copyright © 2015 HiConversion, Inc. All rights reserved.
  * @license [http://opensource.org/licenses/MIT] MIT License
  */
-?>
 
-<script>
+$helper = $this->helper('Hic\Integration\Helper\Helper');
+?>
+<?php if ($helper->isEnabled()) :?>
+
+<script id="hiconversion_dynamic" type="text/javascript">
 require([
 'jquery',
 'Magento_Customer/js/customer-data'
@@ -62,3 +65,5 @@ if (isEnabled(user)) {
 }
 });
 </script>
+<?php endif; ?>
+

@@ -17,13 +17,18 @@
  */
 
 namespace Hic\Integration\Helper;
+use Hic\Integration\Model\Data;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
+use Magento\Framework\App\ProductMetadata;
 
 /**
  * Integration data helper
  *
  * @author HiConversion <support@hiconversion.com>
  */
-class Helper extends \Magento\Framework\App\Helper\AbstractHelper
+class Helper extends AbstractHelper
 {
     /**
      * enabled id in configuration
@@ -36,25 +41,36 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
     const SETTINGS_SITE_ID = 'hiconversion/configuration/site_id';
 
     /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     * @var ScopeConfigInterface
      */
     protected $scopeConfig;
 
     /**
-     * @var \Hic\Integration\Model\Data
+     * @var Data
      */
     private $hicModel;
 
     /**
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Hic\Integration\Model\Data $hicModel
+     * @var ProductMetadata
+     */
+    private $productMetadata;
+
+    /**
+     * @param Context $context
+     * @param ScopeConfigInterface $scopeConfig
+     * @param Data $hicModel
+     * @param ProductMetadata $productMetadata
      */
     public function __construct(
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Hic\Integration\Model\Data $hicModel
+        Context $context,
+        ScopeConfigInterface $scopeConfig,
+        Data $hicModel,
+        ProductMetadata $productMetadata
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->hicModel = $hicModel;
+        $this->productMetadata = $productMetadata;
+        parent::__construct($context);
     }
   
     /**
@@ -75,6 +91,26 @@ class Helper extends \Magento\Framework\App\Helper\AbstractHelper
     public function isEnabled()
     {
         return $this->scopeConfig->getValue(self::SETTINGS_ENABLED);
+    }
+
+    /**
+     * Returns Magento Version
+     *
+     * @return string
+     */
+    public function getMageVersion()
+    {
+        return $this->productMetadata->getVersion();
+    }
+
+    /**
+     * Returns Magento Edition
+     *
+     * @return string
+     */
+    public function getMageEdition()
+    {
+        return $this->productMetadata->getEdition();
     }
 
     /**
