@@ -387,7 +387,11 @@ class Data extends \Magento\Framework\Model\AbstractModel
             if ($customer) {
                 $orders = $this->getOrders($customerId);
                 if ($orders) {
-                    $data['ht'] = count($orders) > 0;
+                    $ocnt = count($orders);
+                    if ($ocnt > 0) {
+                        $data['ht'] = true;
+                        $data['ocnt'] = $ocnt;
+                    }
                 }
                 if ($customer->getDob()) {
                     $data['bday'] = $customer->getDob();
