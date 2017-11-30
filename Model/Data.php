@@ -213,7 +213,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * Returns category names for each product
      * passed into function
      *
-     * @param \Magento\Catalog\Api\Data\ProductInterface $product
+      * @param \Magento\Catalog\Api\Data\ProductInterface $product
      * @return array $categoryNames
      */
     private function getCategoryNames($product)
@@ -226,6 +226,51 @@ class Data extends \Magento\Framework\Model\AbstractModel
         }
  
         return $categoryNames;
+    }
+
+    /**
+     * Get item options for
+
+     * @param array $options
+     * @return array
+     */
+    public function _getItemOptions($options)
+    {
+        $result = array();
+        if ($options) {
+            if (isset($options['options'])) {
+                $result = array_merge($result, $options['options']);
+            }
+            if (isset($options['additional_options'])) {
+                $result = array_merge($result, $options['additional_options']);
+            }
+            if (isset($options['attributes_info'])) {
+                $result = array_merge($result, $options['attributes_info']);
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Get list of all options for product
+     * @param \Magento\Sales\Model\Order\Item|\Magento\Catalog\Model\Product\Configuration\Item\ItemInterface $item
+     * @param $isOrder
+     * @return array
+     */
+    protected function _getOptionList($item, $isOrder)
+    {
+        if ($isOrder) {
+            $options = $item->getProductOptions();
+            $options = $this->_getItemOptions($options);
+        } else {
+            $options = $this->productConfig->getOptions($item);
+        }
+        $opts = array();
+        foreach ($options as $option) {
+            $formattedValue = $this->productConfig->getFormattedOptionValue($option);
+            $opts[$option['label']] = $formattedValue['value'];
+        }
+        return $opts;
     }
 
      /**
@@ -260,18 +305,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $info['sku'] = $product->getSku();
             $info['cat'] = $this->getCategoryNames($product);
 
-            $options = $this->productConfig->getOptions($item);
-
-            if ($options && !empty($options)) {
-                $opts = [];
-
-                foreach ($options as $option) {
-                  $formattedValue = $this->productConfig->getFormattedOptionValue($option);
-                  $opts[$option['label']] = $formattedValue['value'];
-                }
-
-                $info['opt'] = $opts;
-            }
+            $info['opt'] = $this->_getOptionList($item, $isOrder);
 
             $data[] = $info;
         }
