@@ -19,7 +19,6 @@
 namespace Hic\Integration\Model;
 
 use Magento\Catalog\Helper\Product\Configuration;
-use Magento\Framework\Api\ExtensionAttributesFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Catalog\Helper\Data as CatalogHelper;
 use Magento\Catalog\Helper\Product;
@@ -62,7 +61,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
      *
      * @var Configuration
      */
-    protected $productConfig;
+    private $productConfig;
 
     /**
      * @var ProductRepositoryInterface
@@ -107,7 +106,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
     /**
      * @param Context $context
      * @param Registry $registry
-     * @param ExtensionAttributesFactory $extensionFactory
      * @param RequestInterface $request
      * @param CatalogHelper $catalogData
      * @param Product $productHelper
@@ -124,7 +122,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
     public function __construct(
         Context $context,
         Registry $registry,
-        ExtensionAttributesFactory $extensionFactory,
         RequestInterface $request,
         CatalogHelper $catalogData,
         Product $productHelper,
@@ -154,7 +151,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         parent::__construct(
             $context,
             $registry
-            );
+        );
     }
 
     /**
@@ -178,21 +175,21 @@ class Data extends \Magento\Framework\Model\AbstractModel
     }
 
      /**
-     * Determines if Confirmation page or not
-     *
-     * @return boolean
-     */
+      * Determines if Confirmation page or not
+      *
+      * @return boolean
+      */
     public function isConfirmation()
     {
         return 'checkout_onepage_success' == $this->getRoute();
     }
 
      /**
-     * Retrieves page route and breadcrumb info and populates page
-     * attribute
-     *
-     * @return $this
-     */
+      * Retrieves page route and breadcrumb info and populates page
+      * attribute
+      *
+      * @return $this
+      */
     public function populatePageData()
     {
         $crumb = [];
@@ -210,12 +207,12 @@ class Data extends \Magento\Framework\Model\AbstractModel
     }
 
      /**
-     * Returns category names for each product
-     * passed into function
-     *
+      * Returns category names for each product
+      * passed into function
+      *
       * @param \Magento\Catalog\Api\Data\ProductInterface $product
-     * @return array $categoryNames
-     */
+      * @return array $categoryNames
+      */
     private function getCategoryNames($product)
     {
         
@@ -234,9 +231,9 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param array $options
      * @return array
      */
-    public function _getItemOptions($options)
+    private function getItemOptions($options)
     {
-        $result = array();
+        $result = [];
         if ($options) {
             if (isset($options['options'])) {
                 $result = array_merge($result, $options['options']);
@@ -257,15 +254,15 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param $isOrder
      * @return array
      */
-    protected function _getOptionList($item, $isOrder)
+    private function getOptionList($item, $isOrder)
     {
         if ($isOrder) {
             $options = $item->getProductOptions();
-            $options = $this->_getItemOptions($options);
+            $options = $this->getItemOptions($options);
         } else {
             $options = $this->productConfig->getOptions($item);
         }
-        $opts = array();
+        $opts = [];
         foreach ($options as $option) {
             $formattedValue = $this->productConfig->getFormattedOptionValue($option);
             $opts[$option['label']] = $formattedValue['value'];
@@ -274,13 +271,13 @@ class Data extends \Magento\Framework\Model\AbstractModel
     }
 
      /**
-     * Returns product information for each cart
-     * item passed into function
-     *
-     * @param array $items
-     * @param boolean $isOrder
-     * @return array $data
-     */
+      * Returns product information for each cart
+      * item passed into function
+      *
+      * @param array $items
+      * @param boolean $isOrder
+      * @return array $data
+      */
     private function getCartItems($items, $isOrder)
     {
         $data = [];
@@ -305,7 +302,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $info['sku'] = $product->getSku();
             $info['cat'] = $this->getCategoryNames($product);
 
-            $info['opt'] = $this->_getOptionList($item, $isOrder);
+            $info['opt'] = $this->getOptionList($item, $isOrder);
 
             $data[] = $info;
         }
@@ -314,11 +311,11 @@ class Data extends \Magento\Framework\Model\AbstractModel
     }
 
      /**
-     * Retrieves all orders for a given customer id
-     *
-     * @param int $customerId
-     * @return \Magento\Sales\Api\Data\OrderInterface[] Array of items
-     */
+      * Retrieves all orders for a given customer id
+      *
+      * @param int $customerId
+      * @return \Magento\Sales\Api\Data\OrderInterface[] Array of items
+      */
     private function getOrders($customerId)
     {
         $this->searchCriteriaBuilder->addFilter('customer_id', $customerId);

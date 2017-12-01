@@ -17,6 +17,7 @@
  */
 
 namespace Hic\Integration\Helper;
+
 use Hic\Integration\Model\Data;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\AbstractHelper;
