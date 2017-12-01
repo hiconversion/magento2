@@ -19,7 +19,6 @@
 namespace Hic\Integration\Helper;
 
 use Hic\Integration\Model\Data;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\App\ProductMetadata;
@@ -42,11 +41,6 @@ class Helper extends AbstractHelper
     const SETTINGS_SITE_ID = 'hiconversion/configuration/site_id';
 
     /**
-     * @var ScopeConfigInterface
-     */
-    protected $scopeConfig;
-
-    /**
      * @var Data
      */
     private $hicModel;
@@ -58,17 +52,14 @@ class Helper extends AbstractHelper
 
     /**
      * @param Context $context
-     * @param ScopeConfigInterface $scopeConfig
      * @param Data $hicModel
      * @param ProductMetadata $productMetadata
      */
     public function __construct(
         Context $context,
-        ScopeConfigInterface $scopeConfig,
         Data $hicModel,
         ProductMetadata $productMetadata
     ) {
-        $this->scopeConfig = $scopeConfig;
         $this->hicModel = $hicModel;
         $this->productMetadata = $productMetadata;
         parent::__construct($context);
