@@ -339,7 +339,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $data['url'] = $this->productHelper->getProductUrl($currentProduct);
             $data['sku'] = $currentProduct->getSku();
             $data['bpr'] = $currentProduct->getPrice();
-            $data['img'] = $this->productHelper->getImageUrl($currentProduct);
+            $data['img'] = $this->productHelper->getThumbnailUrl($currentProduct);
             $this->setProduct($data);
         }
         return $this;
