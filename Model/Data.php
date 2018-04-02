@@ -32,6 +32,8 @@ use Magento\Framework\Registry;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Checkout\Model\Session as CheckoutSession;
+use Magento\Catalog\Helper\Image;
+use Psr\Log\LoggerInterface;
 
 /**
  * Integration data model
@@ -104,6 +106,16 @@ class Data extends \Magento\Framework\Model\AbstractModel
     private $checkoutSession;
 
     /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * @var Image
+     */
+    private $imageHelper;
+
+    /**
      * @param Context $context
      * @param Registry $registry
      * @param RequestInterface $request
@@ -118,6 +130,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param OrderRepositoryInterface $orderRepository
      * @param CategoryRepositoryInterface $categoryRepository
      * @param CheckoutSession $checkoutSession
+     * @param LoggerInterface $logger
+     * @param Image $imageHelper
      */
     public function __construct(
         Context $context,
@@ -133,7 +147,9 @@ class Data extends \Magento\Framework\Model\AbstractModel
         CustomerSession $customerSession,
         OrderRepositoryInterface $orderRepository,
         CategoryRepositoryInterface $categoryRepository,
-        CheckoutSession $checkoutSession
+        CheckoutSession $checkoutSession,
+        LoggerInterface $logger,
+        Image $imageHelper
     ) {
         $this->request = $request;
         $this->catalogData = $catalogData;
@@ -147,6 +163,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->orderRepository = $orderRepository;
         $this->categoryRepository = $categoryRepository;
         $this->checkoutSession = $checkoutSession;
+        $this->logger = $logger;
+        $this->imageHelper = $imageHelper;
 
         parent::__construct(
             $context,
@@ -218,8 +236,12 @@ class Data extends \Magento\Framework\Model\AbstractModel
         
         $categoryNames = [];
         foreach ($product->getCategoryIds() as $categoryId) {
-            $category = $this->categoryRepository->get($categoryId);
-            array_push($categoryNames, $category->getName());
+            try {
+                $category = $this->categoryRepository->get($categoryId);
+                array_push($categoryNames, $category->getName());
+            } catch (\Exception $e) {
+                $this->logger->critical($e->getMessage());
+            }
         }
  
         return $categoryNames;
@@ -284,6 +306,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
 
         foreach ($items as $item) {
             $product = $item->getProduct();
+            $imageHelper = $this->imageHelper->init($product, 'mini_cart_product_thumbnail');
 
             $info = [];
             $info['ds'] = (float)$item->getDiscountAmount();
@@ -298,7 +321,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $info['id'] = $product->getId();
             $info['url'] = $this->productHelper->getProductUrl($product);
             $info['nm'] = $product->getName();
-            $info['img'] = $this->productHelper->getThumbnailUrl($product);
+            $info['img'] = $imageHelper->getUrl();
             $info['sku'] = $product->getSku();
             $info['cat'] = $this->getCategoryNames($product);
 
@@ -333,13 +356,14 @@ class Data extends \Magento\Framework\Model\AbstractModel
     {
         $currentProduct = $this->catalogData->getProduct();
         if ($currentProduct) {
+            $imageHelper = $this->imageHelper->init($currentProduct, 'mini_cart_product_thumbnail');
             $data['cat'] = $this->getCategoryNames($currentProduct);
             $data['id']  = $currentProduct->getId();
             $data['nm']  = $currentProduct->getName();
             $data['url'] = $this->productHelper->getProductUrl($currentProduct);
             $data['sku'] = $currentProduct->getSku();
             $data['bpr'] = $currentProduct->getPrice();
-            $data['img'] = $this->productHelper->getThumbnailUrl($currentProduct);
+            $data['img'] = $imageHelper->getUrl();
             $this->setProduct($data);
         }
         return $this;
