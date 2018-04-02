@@ -33,7 +33,9 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Catalog\Helper\Image;
+use Magento\Payment\ModelCcConfig;
 use Psr\Log\LoggerInterface;
+
 
 /**
  * Integration data model
@@ -116,6 +118,11 @@ class Data extends \Magento\Framework\Model\AbstractModel
     private $imageHelper;
 
     /**
+     * @var CcConfig
+     */
+    private $ccConfig;
+
+    /**
      * @param Context $context
      * @param Registry $registry
      * @param RequestInterface $request
@@ -132,6 +139,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param CheckoutSession $checkoutSession
      * @param LoggerInterface $logger
      * @param Image $imageHelper
+     * @param CcConfig $ccConfig
      */
     public function __construct(
         Context $context,
@@ -149,7 +157,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
         CategoryRepositoryInterface $categoryRepository,
         CheckoutSession $checkoutSession,
         LoggerInterface $logger,
-        Image $imageHelper
+        Image $imageHelper,
+        CcConfig $ccConfig
     ) {
         $this->request = $request;
         $this->catalogData = $catalogData;
@@ -165,6 +174,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->checkoutSession = $checkoutSession;
         $this->logger = $logger;
         $this->imageHelper = $imageHelper;
+        $this->ccConfig = $ccConfig;
 
         parent::__construct(
             $context,
@@ -458,6 +468,14 @@ class Data extends \Magento\Framework\Model\AbstractModel
             }
             if ($order->getPayment()->getMethodInstance()->getTitle()) {
                 $transaction['type'] = $order->getPayment()->getMethodInstance()->getTitle();
+            }
+            $ccType = $order->getPayment().getCcType();
+            if ($ccType) {
+                $cardTypes = $this->ccConfig->getCcAvailableTypes();
+                $cardName = $cardTypes[$ccType];
+                if ($cardName) {
+                    $transaction['ccType'] = $cardName;
+                }
             }
             if ($order->getGrandTotal()) {
                 $transaction['tt'] = (float)$order->getGrandTotal();
