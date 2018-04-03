@@ -33,7 +33,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Catalog\Helper\Image;
-use Magento\Payment\ModelCcConfig;
+use Magento\Payment\Model\CcConfig;
 use Psr\Log\LoggerInterface;
 
 
@@ -316,7 +316,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
 
         foreach ($items as $item) {
             $product = $item->getProduct();
-            $imageHelper = $this->imageHelper->init($product, 'mini_cart_product_thumbnail');
+            $imageHelper = $this->imageHelper->init($product, 'cart_page_product_thumbnail');
 
             $info = [];
             $info['ds'] = (float)$item->getDiscountAmount();
@@ -366,7 +366,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
     {
         $currentProduct = $this->catalogData->getProduct();
         if ($currentProduct) {
-            $imageHelper = $this->imageHelper->init($currentProduct, 'mini_cart_product_thumbnail');
+            $imageHelper = $this->imageHelper->init($currentProduct, 'cart_page_product_thumbnail');
             $data['cat'] = $this->getCategoryNames($currentProduct);
             $data['id']  = $currentProduct->getId();
             $data['nm']  = $currentProduct->getName();
@@ -469,7 +469,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             if ($order->getPayment()->getMethodInstance()->getTitle()) {
                 $transaction['type'] = $order->getPayment()->getMethodInstance()->getTitle();
             }
-            $ccType = $order->getPayment().getCcType();
+            $ccType = $order->getPayment()->getCcType();
             if ($ccType) {
                 $cardTypes = $this->ccConfig->getCcAvailableTypes();
                 $cardName = $cardTypes[$ccType];
