@@ -36,7 +36,6 @@ use Magento\Catalog\Helper\Image;
 use Magento\Payment\Model\CcConfig;
 use Psr\Log\LoggerInterface;
 
-
 /**
  * Integration data model
  *
