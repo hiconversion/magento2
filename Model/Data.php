@@ -34,7 +34,6 @@ use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Catalog\Helper\Image;
 use Magento\Payment\Model\CcConfig;
-use Psr\Log\LoggerInterface;
 
 /**
  * Integration data model
@@ -136,7 +135,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param OrderRepositoryInterface $orderRepository
      * @param CategoryRepositoryInterface $categoryRepository
      * @param CheckoutSession $checkoutSession
-     * @param LoggerInterface $logger
      * @param Image $imageHelper
      * @param CcConfig $ccConfig
      */
@@ -155,7 +153,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
         OrderRepositoryInterface $orderRepository,
         CategoryRepositoryInterface $categoryRepository,
         CheckoutSession $checkoutSession,
-        LoggerInterface $logger,
         Image $imageHelper,
         CcConfig $ccConfig
     ) {
@@ -171,7 +168,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->orderRepository = $orderRepository;
         $this->categoryRepository = $categoryRepository;
         $this->checkoutSession = $checkoutSession;
-        $this->logger = $logger;
+        $this->logger = $context->getLogger();
         $this->imageHelper = $imageHelper;
         $this->ccConfig = $ccConfig;
 
