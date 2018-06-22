@@ -34,7 +34,6 @@ use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Catalog\Helper\Image;
 use Magento\Payment\Model\CcConfig;
-use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Integration data model
@@ -122,11 +121,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
     private $ccConfig;
 
     /**
-     * @var StoreManager
-     */
-    private $storeManager;
-
-    /**
      * @param Context $context
      * @param Registry $registry
      * @param RequestInterface $request
@@ -143,7 +137,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param CheckoutSession $checkoutSession
      * @param Image $imageHelper
      * @param CcConfig $ccConfig
-     * @param StoreManager $storeManager
      */
     public function __construct(
         Context $context,
@@ -161,8 +154,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         CategoryRepositoryInterface $categoryRepository,
         CheckoutSession $checkoutSession,
         Image $imageHelper,
-        CcConfig $ccConfig,
-        StoreManager $storeManager
+        CcConfig $ccConfig
     ) {
         $this->request = $request;
         $this->catalogData = $catalogData;
@@ -179,7 +171,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->logger = $context->getLogger();
         $this->imageHelper = $imageHelper;
         $this->ccConfig = $ccConfig;
-        $this->storeManager = $storeManager;
 
         parent::__construct(
             $context,
@@ -416,15 +407,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $data['auth'] = $this->customerSession->isLoggedIn();
         $data['ht'] = false;
         $data['nv'] = true;
-        if ($this->storeManager->getStore()->getCurrentCurrencyCode()) {
-            $data['cu'] = $this->storeManager->getStore()->getCurrentCurrencyCode();
-        }
-        if ($this->storeManager->getStore()->getBaseCurrencyCode()) {
-            $data['bcu'] = $this->storeManager->getStore()->getBaseCurrencyCode();
-        }
-        if ($this->storeManager->getStore()->getCurrentCurrencyRate()) {
-            $data['cr'] = $this->storeManager->getStore()->getCurrentCurrencyRate();
-        }
         $data['cg'] = $this->customerSession->getCustomerGroupId();
         $customerId = $this->customerSession->getId();
         if ($customerId) {
@@ -439,14 +421,17 @@ class Data extends \Magento\Framework\Model\AbstractModel
                     }
                 }
                 if ($customer->getDob()) {
-                    $dob = new DateTime($customer->getDob());
-                    $data['by'] = $dob->format('Y');
+                    $data['bday'] = $customer->getDob();
                 }
                 if ($customer->getGender()) {
                     $data['gndr'] = $customer->getGender();
                 }
+                if ($customer->getEmail()) {
+                    $data['email'] = $customer->getEmail();
+                }
                 $data['id'] = $customer->getId();
                 $data['nv'] = false;
+                $data['nm'] = trim($customer->getFirstname()) . ' ' . trim($customer->getLastname());
                 $data['since'] = $customer->getCreatedAt();
             }
         }
