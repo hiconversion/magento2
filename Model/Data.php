@@ -397,7 +397,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $data['st'] = (float)$cartQuote->getSubtotal();
         $data['tt'] = (float)$cartQuote->getGrandTotal();
         $data['qt'] = (float)$cartQuote->getItemsQty();
-        $data['cu'] = $cartQuote->getStoreCurrencyCode();
         $data['li'] = $this
             ->getCartItems($cartQuote->getAllVisibleItems(), false);
         $this->setCart($data);
@@ -467,9 +466,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
         if ($order) {
             if ($order->getIncrementId()) {
                 $transaction['id'] = $order->getIncrementId();
-            }
-            if ($order->getOrderCurrencyCode()) {
-                $transaction['cu'] = $order->getOrderCurrencyCode();
             }
             if ($order->getSubtotal()) {
                 $transaction['st'] = (float)$order->getSubtotal();
