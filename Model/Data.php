@@ -35,6 +35,7 @@ use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Catalog\Helper\Image;
 use Magento\Payment\Model\CcConfig;
 use Magento\Store\Model\StoreManagerInterface;
+use \Datetime;
 
 /**
  * Integration data model
@@ -122,7 +123,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
     private $ccConfig;
 
     /**
-     * @var StoreManager
+     * @var StoreManagerInterface
      */
     private $storeManager;
 
@@ -143,7 +144,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param CheckoutSession $checkoutSession
      * @param Image $imageHelper
      * @param CcConfig $ccConfig
-     * @param StoreManager $storeManager
+     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
         Context $context,
@@ -162,7 +163,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         CheckoutSession $checkoutSession,
         Image $imageHelper,
         CcConfig $ccConfig,
-        StoreManager $storeManager
+        StoreManagerInterface $storeManager
     ) {
         $this->request = $request;
         $this->catalogData = $catalogData;
