@@ -480,11 +480,16 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $ccType = $order->getPayment()->getCcType();
             if ($ccType) {
                 $cardTypes = $this->ccConfig->getCcAvailableTypes();
-                $cardName = $cardTypes[$ccType];
-                if ($cardName) {
-                    $transaction['ccType'] = $cardName;
-                }
+                if (array_key_exists($ccType, $cardTypes)) {
+                    $cardName = $cardTypes[$ccType];
+                    if ($cardName) {
+                         $transaction['ccType'] = $cardName;
+                    }
+                } else {
+                    $transaction['ccType'] = $ccType;
+                }   
             }
+
             if ($order->getGrandTotal()) {
                 $transaction['tt'] = (float)$order->getGrandTotal();
             }
