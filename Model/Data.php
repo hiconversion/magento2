@@ -350,6 +350,28 @@ class Data extends \Magento\Framework\Model\AbstractModel
     }
 
      /**
+      * Returns currency information
+      *
+      * @return array $currencyInfo
+      */
+    private function getCurrencyInfo()
+    {
+        $currencyInfo = [];
+  
+        if ($this->storeManager->getStore()->getCurrentCurrencyCode()) {
+            $currencyInfo['cu'] = $this->storeManager->getStore()->getCurrentCurrencyCode();
+        }
+        if ($this->storeManager->getStore()->getBaseCurrencyCode()) {
+            $currencyInfo['bcu'] = $this->storeManager->getStore()->getBaseCurrencyCode();
+        }
+        if ($this->storeManager->getStore()->getCurrentCurrencyRate()) {
+            $currencyInfo['cr'] = $this->storeManager->getStore()->getCurrentCurrencyRate();
+        }
+  
+        return $currencyInfo;
+    }
+
+     /**
       * Retrieves all orders for a given customer id
       *
       * @param int $customerId
@@ -380,6 +402,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $data['sku'] = $currentProduct->getSku();
             $data['bpr'] = $currentProduct->getPrice();
             $data['img'] = $imageHelper->getUrl();
+            $data['cur'] = $this->getCurrencyInfo();
             $this->setProduct($data);
         }
         return $this;
@@ -398,6 +421,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $data['st'] = (float)$cartQuote->getSubtotal();
         $data['tt'] = (float)$cartQuote->getGrandTotal();
         $data['qt'] = (float)$cartQuote->getItemsQty();
+        $data['cur'] = $this->getCurrencyInfo();
         $data['li'] = $this
             ->getCartItems($cartQuote->getAllVisibleItems(), false);
         $this->setCart($data);
@@ -416,16 +440,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $data['auth'] = $this->customerSession->isLoggedIn();
         $data['ht'] = false;
         $data['nv'] = true;
-        if ($this->storeManager->getStore()->getCurrentCurrencyCode()) {
-            $data['cu'] = $this->storeManager->getStore()->getCurrentCurrencyCode();
-        }
-        if ($this->storeManager->getStore()->getBaseCurrencyCode()) {
-            $data['bcu'] = $this->storeManager->getStore()->getBaseCurrencyCode();
-        }
-        if ($this->storeManager->getStore()->getCurrentCurrencyRate()) {
-            $data['cr'] = $this->storeManager->getStore()->getCurrentCurrencyRate();
-        }
         $data['cg'] = $this->customerSession->getCustomerGroupId();
+        $data['cur'] = $this->getCurrencyInfo();
         $customerId = $this->customerSession->getId();
         if ($customerId) {
             $customer = $this->customerRepository->getById($customerId);
@@ -502,6 +518,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             if ($order->getDiscountAmount() > 0) {
                 $transaction['ds'] = -1 * $order->getDiscountAmount();
             }
+            $transaction['cur'] = $this->getCurrencyInfo();
             $transaction['li'] = $this
                 ->getCartItems($order->getAllVisibleItems(), true);
             $transaction['sh'] = (float)$order->getShippingAmount();
