@@ -76,6 +76,15 @@ class Helper extends AbstractHelper
     }
 
     /**
+     * Returns Url with Site ID from Configuration included
+     *
+     * @return string
+     */
+    public function getDeployUrl() {
+        return '//h30-deploy.hiconversion.com/origin/tag/' . $this->getSiteId();
+    }
+
+    /**
      * Determines if module is enabled or not
      *
      * @return boolean
