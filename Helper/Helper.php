@@ -22,6 +22,7 @@ use Hic\Integration\Model\Data;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\App\ProductMetadata;
+use Magento\Store\Model\ScopeInterface;
 
 /**
  * Integration data helper
@@ -72,7 +73,7 @@ class Helper extends AbstractHelper
      */
     public function getSiteId()
     {
-        return $this->scopeConfig->getValue(self::SETTINGS_SITE_ID);
+        return $this->scopeConfig->getValue(self::SETTINGS_SITE_ID, ScopeInterface::SCOPE_STORE);
     }
 
     /**
@@ -91,7 +92,7 @@ class Helper extends AbstractHelper
      */
     public function isEnabled()
     {
-        return $this->scopeConfig->getValue(self::SETTINGS_ENABLED);
+        return $this->scopeConfig->getValue(self::SETTINGS_ENABLED, ScopeInterface::SCOPE_STORE);
     }
 
     /**
