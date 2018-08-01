@@ -327,7 +327,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $info = [];
             $info['ds'] = (float)$item->getDiscountAmount();
             $info['tx'] = (float)$item->getTaxAmount();
-            $info['pr'] = (float)$item->getRowTotalInclTax();
+            $info['pr'] = (float)$product->getFinalPrice();
             $info['bpr'] = (float)$product->getPrice();
             if ($isOrder) {
                 $info['qt'] = (float)$item->getQtyOrdered();
