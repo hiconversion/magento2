@@ -35,6 +35,7 @@ use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Catalog\Helper\Image;
 use Magento\Payment\Model\CcConfig;
 use Magento\Store\Model\StoreManagerInterface;
+use \Psr\Log\LoggerInterface;
 use \Datetime;
 
 /**
@@ -145,6 +146,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param Image $imageHelper
      * @param CcConfig $ccConfig
      * @param StoreManagerInterface $storeManager
+     * @param LoggerInterface $logger
      */
     public function __construct(
         Context $context,
@@ -163,7 +165,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
         CheckoutSession $checkoutSession,
         Image $imageHelper,
         CcConfig $ccConfig,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        LoggerInterface $logger
     ) {
         $this->request = $request;
         $this->catalogData = $catalogData;
@@ -177,10 +180,10 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->orderRepository = $orderRepository;
         $this->categoryRepository = $categoryRepository;
         $this->checkoutSession = $checkoutSession;
-        $this->logger = $context->getLogger();
         $this->imageHelper = $imageHelper;
         $this->ccConfig = $ccConfig;
         $this->storeManager = $storeManager;
+        $this->logger = $logger;
 
         parent::__construct(
             $context,

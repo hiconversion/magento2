@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+   <virtualType name="hicConfigFactory" type="Magento\Payment\Model\Method\ConfigInterfaceFactory">
+       <arguments>
+           <argument xsi:type="string" name="instanceName">Hic\Integration\Model\HicConfig</argument>
+       </arguments>
+   </virtualType>
+   <type name="Magento\Paypal\Model\Payflowpro">
+        <arguments>
+            <argument name="configFactory" xsi:type="object">hicConfigFactory</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Braintree\Gateway\Request\ChannelDataBuilder">
+        <plugin name="hic_channel_data_plugin" type="Hic\Integration\Plugin\HicChannelDataPlugin" /> 
+    </type>
+</config>

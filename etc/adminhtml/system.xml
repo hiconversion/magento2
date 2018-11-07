@@ -17,6 +17,9 @@
                 <field id="site_id" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Site ID</label>
                 </field>
+                 <field id="bn_code" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Build Notation Code</label>
+                </field>
             </group>
         </section>
     </system>
