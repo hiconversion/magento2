@@ -31,6 +31,7 @@ use Magento\Framework\Model\Context;
 use Magento\Framework\Registry;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
+use Magento\CatalogInventory\Api\StockRegistryInterface;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Catalog\Helper\Image;
 use Magento\Payment\Model\CcConfig;
@@ -104,6 +105,11 @@ class Data extends \Magento\Framework\Model\AbstractModel
     private $categoryRepository;
 
     /**
+     * @var StockRegistryInterface
+     */
+    private $stockRegistry;
+
+    /**
      * @var CheckoutSession
      */
     private $checkoutSession;
@@ -142,6 +148,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param CustomerSession $customerSession
      * @param OrderRepositoryInterface $orderRepository
      * @param CategoryRepositoryInterface $categoryRepository
+     * @param StockRegistryInterface $stockRegistry
      * @param CheckoutSession $checkoutSession
      * @param Image $imageHelper
      * @param CcConfig $ccConfig
@@ -162,6 +169,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         CustomerSession $customerSession,
         OrderRepositoryInterface $orderRepository,
         CategoryRepositoryInterface $categoryRepository,
+        StockRegistryInterface $stockRegistry,
         CheckoutSession $checkoutSession,
         Image $imageHelper,
         CcConfig $ccConfig,
@@ -179,6 +187,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->customerSession = $customerSession;
         $this->orderRepository = $orderRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->stockRegistry = $stockRegistry;
         $this->checkoutSession = $checkoutSession;
         $this->imageHelper = $imageHelper;
         $this->ccConfig = $ccConfig;
@@ -337,6 +346,10 @@ class Data extends \Magento\Framework\Model\AbstractModel
             } else {
                 $info['qt'] = (float)$item->getQty();
             }
+            $stockItem = $this->stockRegistry->getStockItemBySku($product->getSku(), $product->getStore()->getWebsiteId());
+            if ($stockItem) {
+                $info['sq'] =  $stockItem->getQty();
+            }
             $info['id'] = $product->getId();
             $info['url'] = $this->productHelper->getProductUrl($product);
             $info['nm'] = $product->getName();
@@ -405,6 +418,10 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $data['sku'] = $currentProduct->getSku();
             $data['bpr'] = $currentProduct->getPrice();
             $data['pr'] = $currentProduct->getFinalPrice();
+            $stockItem = $this->stockRegistry->getStockItemBySku($currentProduct->getSku(), $currentProduct->getStore()->getWebsiteId());
+            if ($stockItem) {
+                $data['sq'] =  $stockItem->getQty();
+            }
             $data['img'] = $imageHelper->getUrl();
             $data['cur'] = $this->getCurrencyInfo();
             $this->setProduct($data);
