@@ -69,17 +69,11 @@ class HicChannelDataPlugin
     public function afterBuild($buildSubject, $result)
     {
         $newBnCode = $this->getBNCode();
-        $om = \Magento\Framework\App\ObjectManager::getInstance();
-        $logger = $om->get('\Psr\Log\LoggerInterface');
-        $logger->info('BraintTreeOverride newBnCode'.$newBnCode);
         if (!empty($newBnCode)) {
             $result = [
                 'channel' => $newBnCode
             ];
-            $logger->info('BrainTreeOverride setting new result'. print_r($result));
-        } else {
-            $logger->info('BraintTreeOverride falling back to default'. print_r($result));
-        }
+        } 
         return $result;
     }
 }
