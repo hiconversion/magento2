@@ -21,14 +21,14 @@ namespace Hic\Integration\Plugin;
 use Hic\Integration\Helper\Helper;
 
 /**
- * Plugin for setting Braintree BN Code
+ * Plugin for setting BN Code
  *
  * @author HiConversion <support@hiconversion.com>
  */
-class HicChannelDataPlugin
+class HicPayPalAbstractConfigPlugin
 {
-
-    /**
+  
+   /**
      * @var Data
      */
     private $hicHelper;
@@ -47,13 +47,11 @@ class HicChannelDataPlugin
      *
      * @return string
      */
-    public function afterBuild($buildSubject, $result)
+    public function afterGetBuildNotationCode($result)
     {
         $newBnCode = $this->hicHelper->getBNCode();
         if (!empty($newBnCode)) {
-            $result = [
-                'channel' => $newBnCode
-            ];
+           $result = $newBnCode;
         } 
         return $result;
     }

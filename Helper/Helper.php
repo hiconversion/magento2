@@ -42,6 +42,11 @@ class Helper extends AbstractHelper
     const SETTINGS_SITE_ID = 'hiconversion/configuration/site_id';
 
     /**
+     * bn code in configuration
+     */
+    const SETTINGS_BN_CODE = 'hiconversion/configuration/bn_code';
+
+    /**
      * @var Data
      */
     private $hicModel;
@@ -74,6 +79,16 @@ class Helper extends AbstractHelper
     public function getSiteId()
     {
         return $this->scopeConfig->getValue(self::SETTINGS_SITE_ID, ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * Returns BN Code from Configuration
+     *
+     * @return string
+     */
+    public function getBNCode()
+    {
+        return $this->scopeConfig->getValue(self::SETTINGS_BN_CODE, ScopeInterface::SCOPE_STORE);
     }
 
     /**
