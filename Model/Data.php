@@ -346,7 +346,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
             } else {
                 $info['qt'] = (float)$item->getQty();
             }
-            $stockItem = $this->stockRegistry->getStockItemBySku($product->getSku(), $product->getStore()->getWebsiteId());
+            $stockItem = $this->stockRegistry
+                ->getStockItemBySku($product->getSku(), $product->getStore()->getWebsiteId());
             if ($stockItem) {
                 $info['sq'] =  $stockItem->getQty();
             }
@@ -418,7 +419,8 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $data['sku'] = $currentProduct->getSku();
             $data['bpr'] = $currentProduct->getPrice();
             $data['pr'] = $currentProduct->getFinalPrice();
-            $stockItem = $this->stockRegistry->getStockItemBySku($currentProduct->getSku(), $currentProduct->getStore()->getWebsiteId());
+            $stockItem = $this->stockRegistry
+                ->getStockItemBySku($currentProduct->getSku(), $currentProduct->getStore()->getWebsiteId());
             if ($stockItem) {
                 $data['sq'] =  $stockItem->getQty();
             }
@@ -524,7 +526,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
                     }
                 } else {
                     $transaction['ccType'] = $ccType;
-                }   
+                }
             }
 
             if ($order->getGrandTotal()) {

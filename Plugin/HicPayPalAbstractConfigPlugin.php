@@ -29,8 +29,8 @@ class HicPayPalAbstractConfigPlugin
 {
   
    /**
-     * @var Data
-     */
+    * @var Data
+    */
     private $hicHelper;
 
     /**
@@ -51,8 +51,8 @@ class HicPayPalAbstractConfigPlugin
     {
         $newBnCode = $this->hicHelper->getBNCode();
         if (!empty($newBnCode)) {
-           $result = $newBnCode;
-        } 
+            $result = $newBnCode;
+        }
         return $result;
     }
 }

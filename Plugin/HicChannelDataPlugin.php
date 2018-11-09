@@ -54,7 +54,7 @@ class HicChannelDataPlugin
             $result = [
                 'channel' => $newBnCode
             ];
-        } 
+        }
         return $result;
     }
 }

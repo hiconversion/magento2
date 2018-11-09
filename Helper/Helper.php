@@ -96,7 +96,8 @@ class Helper extends AbstractHelper
      *
      * @return string
      */
-    public function getDeployUrl() {
+    public function getDeployUrl()
+    {
         return '//h30-deploy.hiconversion.com/origin/tag/' . $this->getSiteId();
     }
 
