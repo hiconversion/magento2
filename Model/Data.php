@@ -340,22 +340,22 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $info['ds'] = (float)$item->getDiscountAmount();
             $info['tx'] = (float)$item->getTaxAmount();
             $info['pr'] = (float)$product->getFinalPrice();
-            $info['bpr'] = (float)$product->getPrice();
+            $info['bpr'] = (float)$item->getPrice();
             if ($isOrder) {
                 $info['qt'] = (float)$item->getQtyOrdered();
             } else {
                 $info['qt'] = (float)$item->getQty();
             }
             $stockItem = $this->stockRegistry
-                ->getStockItemBySku($product->getSku(), $product->getStore()->getWebsiteId());
+                ->getStockItemBySku($item->getSku(), $product->getStore()->getWebsiteId());
             if ($stockItem) {
                 $info['sq'] =  $stockItem->getQty();
             }
-            $info['id'] = $product->getId();
+            $info['id'] = $item->getId();
             $info['url'] = $this->productHelper->getProductUrl($product);
-            $info['nm'] = $product->getName();
+            $info['nm'] = $item->getName();
             $info['img'] = $imageHelper->getUrl();
-            $info['sku'] = $product->getSku();
+            $info['sku'] = $item->getSku();
             $info['cat'] = $this->getCategoryNames($product);
 
             $info['opt'] = $this->getOptionList($item, $isOrder);
