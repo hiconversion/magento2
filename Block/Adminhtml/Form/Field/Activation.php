@@ -28,12 +28,6 @@ class Activation extends Field
     protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element) // @codingStandardsIgnoreLine
     {
         $title = __("Activate HiConversion Account");
-        $urlId = 'text-groups-braintree-section-groups-braintree-groups-braintree-'
-            . 'hic-groups-create-account-fields-site-url-value';
-        $emailId = 'text-groups-braintree-section-groups-braintree-groups-braintree-'
-            . 'hic-groups-create-account-fields-email-value';
-        $pwId = 'text-groups-braintree-section-groups-braintree-groups-braintree-'
-            . 'hic-groups-create-account-fields-password-value';
         $storeId = 0;
 
         if ($this->getRequest()->getParam("website")) {
@@ -43,9 +37,9 @@ class Activation extends Field
             }
         }
 
-        $endpoint = $this->getUrl("hiconversion/configuration/activateHiconversion", ['storeId' => $storeId]);
+        $endpoint = $this->getUrl("hiconversion/configuration/activateAccount", ['storeId' => $storeId]);
         $html = '<button type="button" title="' . $title . '" class="button" onclick="' .
-            "activateHicAccount.call(this, '$endpoint', '$urlId', '$emailId', '$pwId')" .
+            "activateHicAccount.call(this, '$endpoint')" .
             '"><span>' . $title . '</span></button>';
 
         return $html;

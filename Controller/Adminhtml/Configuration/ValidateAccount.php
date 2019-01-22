@@ -9,10 +9,10 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
- * Class LinkHiconversion
+ * Class ValidateAccount
  * @package Hic\Integration\Controller\Adminhtml\Configuration
  */
-class LinkHiconversion extends \Magento\Backend\App\Action
+class ValidateAccount extends \Magento\Backend\App\Action
 {
     /**
      * @var \Magento\Framework\App\Config\Storage\WriterInterface;
@@ -25,7 +25,7 @@ class LinkHiconversion extends \Magento\Backend\App\Action
     private $hicApi;
 
     /**
-     * LinkHiconversion constructor.
+     * ValidateAccount constructor.
      * @param Action\Context $context
      * @param WriterInterface $configWriter
      * @param Api $hicApi
@@ -48,19 +48,12 @@ class LinkHiconversion extends \Magento\Backend\App\Action
         $request = $this->getRequest();
         $siteUrl = $request->getParam("site_url");
         $email = $request->getParam("email");
-        $pw = $request->getParam("password");
-        $storeId = $request->getParam("storeId", 0);
+        $siteId = $request->getParam("site_id");
         $response = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         try {
-            $siteId = $this->hicApi->getHicSiteId($siteUrl, $email);
-            if (isset($siteId)) {
-                $this->configWriter->
-                save(
-                    'hiconversion/configuration/site_id',
-                    $siteId,
-                    ScopeConfigInterface::SCOPE_TYPE_DEFAULT
-                );
-                $response->setData($siteId);
+            $result = $this->hicApi->validateAccount($siteUrl, $email, $siteId);
+            if (isset($result)) {
+                $response->setData($result);
                 $response->setHttpResponseCode(200);
             } else {
                 $response->setHttpResponseCode(404);

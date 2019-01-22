@@ -5,10 +5,10 @@ namespace Hic\Integration\Block\Adminhtml\Form\Field;
 use Magento\Config\Block\System\Config\Form\Field;
 
 /**
- * Class HicLink
+ * Class LinkValidation
  * @package Hic\Integration\Block\Adminhtml\Form\Field
  */
-class Link extends Field
+class LinkValidation extends Field
 {
     /**
      * Force scope label to be blank
@@ -20,6 +20,13 @@ class Link extends Field
         return '';
     }
 
+    private function getButtonHtml($fnName, $title, $endpoint)
+    {
+        return '<button type="button" style="margin-right:10px" title="' . $title . '" class="button" onclick="' .
+        $fnName . ".call(this, '$endpoint')" .
+        '"><span>' . $title . '</span></button>';
+    }
+
     /**
      * Replace field markup with link button
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $element
@@ -27,12 +34,9 @@ class Link extends Field
      */
     protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element) // @codingStandardsIgnoreLine
     {
-        $title = __("Get Site ID");
-        $urlId = 'text-groups-braintree-section-groups-braintree-groups-braintree-'
-            . 'hic-groups-link-existing-fields-site-url-value';
-        $emailId = 'text-groups-braintree-section-groups-braintree-groups-braintree-'
-            . 'hic-groups-link-existing-fields-email-value';
-
+        $linkTitle = __("Get Site ID");
+        $validateTitle = __("Validate");
+        
         $storeId = 0;
         if ($this->getRequest()->getParam("website")) {
             $website = $this->_storeManager->getWebsite($this->getRequest()->getParam("website"));
@@ -40,10 +44,14 @@ class Link extends Field
                 $storeId = $website->getId();
             }
         }
-        $endpoint = $this->getUrl("hiconversion/configuration/LinkHiconversion", ['storeId' => $storeId]);
-        $html = '<button type="button" title="' . $title . '" class="button" onclick="' .
-            "linkHicAccount.call(this, '$endpoint', '$urlId', '$emailId')" .
-            '"><span>' . $title . '</span></button>';
+        $linkEndpoint = $this->getUrl("hiconversion/configuration/LinkAccount", ['storeId' => $storeId]);
+        $validateEndpoint = $this->getUrl("hiconversion/configuration/ValidateAccount", ['storeId' => $storeId]);
+
+        $linkButton = $this->getButtonHtml('linkHicAccount', $linkTitle, $linkEndpoint);
+        $validateButton = $this->getButtonHtml('validateHicAccount', $validateTitle, $validateEndpoint);
+        
+        $html = $linkButton . $validateButton;
+
         return $html;
     }
 }

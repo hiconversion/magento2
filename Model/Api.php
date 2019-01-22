@@ -14,6 +14,7 @@ class Api
     const BASE_URL = "http://h30-local.hiconversion.net:9000/api/extensions/";
     const CREATE_ACCOUNT_URL = self::BASE_URL . "signup";
     const GET_SITES_URL = self::BASE_URL . "user/sites";
+    const VALIDATE_ACCOUNT_URL = self::BASE_URL . "validate";
 
     /**
      * @var \Magento\Framework\HTTP\Client\Curl
@@ -53,7 +54,7 @@ class Api
      * creates a hiconversion account
      * @return mixed result from hic service
      */
-    public function activateHicAccount($siteUrl, $email, $password)
+    public function activateAccount($siteUrl, $email, $password)
     {
         $this->setDefaultCurlOpts();
         $this->setDefaultHeaders();
@@ -63,10 +64,31 @@ class Api
             'url' => $siteUrl,
             'password' => $password,
             'leadSource' => 'Braintree-Magento'
-
         ]));
 
         return json_decode($this->curl->getBody(), true);
+    }
+
+    /**
+     * validates hiconversion account
+     * @return boolean true if site is valid, false otherwise
+     */
+    public function validateAccount($siteUrl, $email, $siteId)
+    {
+        $this->setDefaultCurlOpts();
+        $this->setDefaultHeaders();
+
+        $siteIdFromHic = $this->getSiteId($siteUrl, $email);
+
+        if (!isset($siteIdFromHic)) {
+            return null;
+        }
+
+        if ($siteIdFromHic == $siteId) {
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -74,7 +96,7 @@ class Api
      * retrieves site id corresponding to specified url from hic service
      * @return string|null site id
      */
-    public function getHicSiteId($siteUrl, $email)
+    public function getSiteId($siteUrl, $email)
     {
         $this->setDefaultCurlOpts();
         $this->setDefaultHeaders();
