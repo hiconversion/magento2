@@ -5,8 +5,6 @@ namespace Hic\Integration\Controller\Adminhtml\Configuration;
 use Hic\Integration\Model\Api;
 use Magento\Backend\App\Action;
 use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\App\Config\Storage\WriterInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 
 /**
  * Class ActivateAccount
@@ -14,10 +12,6 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
  */
 class ActivateAccount extends \Magento\Backend\App\Action
 {
-    /**
-     * @var \Magento\Framework\App\Config\Storage\WriterInterface;
-     */
-    private $configWriter;
 
     /**
      * @var Api
@@ -28,16 +22,13 @@ class ActivateAccount extends \Magento\Backend\App\Action
      * ActivateAccount constructor.
      *
      * @param Action\Context  $context
-     * @param WriterInterface $configWriter
      * @param Api $hicApi
      */
     public function __construct(
         Action\Context $context,
-        WriterInterface $configWriter,
         Api $hicApi
     ) {
         parent::__construct($context);
-        $this->configWriter = $configWriter;
         $this->hicApi = $hicApi;
     }
 
@@ -50,20 +41,12 @@ class ActivateAccount extends \Magento\Backend\App\Action
         $siteUrl = $request->getParam("site_url");
         $email = $request->getParam("email");
         $pw = $request->getParam("password");
-        $storeId = $request->getParam("storeId", 0);
         $response = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         try {
-            $result = $this->hicApi->activateAccount($siteUrl, $email, $pw, $storeId);
+            $result = $this->hicApi->activateAccount($siteUrl, $email, $pw);
 
             if (isset($result) && isset($result['result']) == "success" && isset($result['external'])) {
                 $siteId = $result['external'];
-
-                $this->configWriter->
-                save(
-                    'hiconversion/configuration/site_id',
-                    $siteId,
-                    ScopeConfigInterface::SCOPE_TYPE_DEFAULT
-                );
                 $response->setData($result);
                 $response->setHttpResponseCode(200);
             } else {

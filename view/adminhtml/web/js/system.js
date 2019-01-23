@@ -1,10 +1,13 @@
 require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, alert, $t) {
     window.activateHicAccount = function (endpoint) {
         var wrapper = $(this).closest('tbody');
+       
+        var site_url = wrapper.find('input[id*=_site_url]').val();
+        var email = wrapper.find('input[id*=_email]').val();
+        var pw = wrapper.find('input[id*=_password]').val();
 
-        url_id = wrapper.find('input[id*=_site_url]').val();
-        email_id = wrapper.find('input[id*=_email]').val();
-        pw_id = wrapper.find('input[id*=_password]').val();
+        var site_id_tr = wrapper.find('tr[id*=_site_id]');
+        var site_id_input = wrapper.find('input[id*=_site_id]');
 
         /* Remove previous success message if present */
         if ($(".hic-activation-success-message")) {
@@ -14,15 +17,15 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
         /* Basic field validation */
         var errors = [];
 
-        if (!url_id) {
+        if (!site_url) {
             errors.push($t("Please enter your site url"));
         }
 
-        if (!email_id) {
+        if (!email) {
             errors.push($t("Please enter an email"));
         }
 
-        if (!pw_id) {
+        if (!pw) {
             errors.push($t('Please enter a password'));
         }
 
@@ -38,12 +41,20 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
 
         var self = this;
         $.post(endpoint, {
-            site_url: url_id,
-            email: email_id,
-            password: pw_id
-        }).done(function () {
-            $(self).parent().append('<div class="message message-success hic-activation-success-message">' + $t("Your account was successfully activated.") + '</div>');
-            setTimeout(function () { location.reload(); }, 200);
+            site_url: site_url,
+            email: email,
+            password: pw
+        }).done(function (response) {
+            if (response && response.result === 'success' && response.external && response.external.length) {
+            $(self).parent().append('<div class="message message-success hic-activation-success-message">' + $t("Your account was successfully activated. You will need to save your config before changes will take place.") + '</div>');
+            site_id_input.val(response.external);
+            site_id_tr.show();
+            } else {
+                return alert({
+                    title: $t('Account Activation Failed'),
+                    content: $t('There was a problem creating your account. Please visit HiConversion to resolve the issue.')
+                });
+            }
         }).fail(function (xhr) {
             if (xhr && xhr.responseJSON && xhr.responseJSON.kind === 'exists') {
                 return alert({
@@ -64,8 +75,10 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
     window.linkHicAccount = function (endpoint) {
         var wrapper = $(this).closest('tbody');
 
-        url_id = wrapper.find('input[id*=_site_url]').val();
-        email_id = wrapper.find('input[id*=_email]').val();
+        var site_url = wrapper.find('input[id*=_site_url]').val();
+        var email = wrapper.find('input[id*=_email]').val();
+
+        var site_id_input = wrapper.find('input[id*=_site_id]');
 
         /* Remove previous success message if present */
         if ($(".hic-link-success-message")) {
@@ -75,11 +88,11 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
         /* Basic field validation */
         var errors = [];
 
-        if (!url_id) {
+        if (!site_url) {
             errors.push($t("Please enter your site url"));
         }
 
-        if (!email_id) {
+        if (!email) {
             errors.push($t("Please enter an email"));
         }
 
@@ -95,11 +108,18 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
 
         var self = this;
         $.post(endpoint, {
-            site_url: url_id,
-            email: email_id
-        }).done(function () {
-            $(self).parent().append('<div class="message message-success hic-link-success-message">' + $t("Your Site Id was retrieved. Refreshing configuration now...") + '</div>');
-            setTimeout(function () { location.reload(); }, 200);
+            site_url: site_url,
+            email: email
+        }).done(function (newId) {
+            if (newId && newId.length) {
+                $(self).parent().append('<div class="message message-success hic-link-success-message">' + $t("Your Site Id was retrieved. You will need to save your config before changes will take place.") + '</div>');
+                site_id_input.val(newId);
+            } else {
+                alert({
+                    title: $t('Get Site Id Failed'),
+                    content: $t('Your site id could not be retrieved. Please ensure you have entered a valid site url and email address that has access to that site in Hiconversion.')
+                });
+            }
         }).fail(function (xhr) {
             if (xhr && xhr.status === 404) {
                 return alert({
@@ -109,7 +129,7 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
             }
             alert({
                 title: $t('Get Site Id Failed'),
-                content: $t('Your HiConversion account could not be linked. Please ensure you have entered a valid site url and email address that has access to that site in Hiconversion.')
+                content: $t('Your site id could not be retrieved. Please ensure you have entered a valid site url and email address that has access to that site in Hiconversion.')
             });
         }).always(function () {
             $(self).text($t("Get Site ID")).attr('disabled', false);
@@ -120,8 +140,8 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
     window.validateHicAccount = function (endpoint) {
         var wrapper = $(this).closest('tbody');
 
-        url_id = wrapper.find('input[id*=_site_url]').val();
-        email_id = wrapper.find('input[id*=_email]').val();
+        site_url = wrapper.find('input[id*=_site_url]').val();
+        email = wrapper.find('input[id*=_email]').val();
         site_id = wrapper.find('input[id*=_site_id]').val();
 
         /* Remove previous success message if present */
@@ -132,11 +152,11 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
         /* Basic field validation */
         var errors = [];
 
-        if (!url_id) {
+        if (!site_url) {
             errors.push($t("Please enter your site url"));
         }
 
-        if (!email_id) {
+        if (!email) {
             errors.push($t("Please enter an email"));
         }
 
@@ -146,7 +166,7 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
 
         if (errors.length > 0) {
             alert({
-                title: $t('HiConversion Account Validation Failed'),
+                title: $t('Account Validation Failed'),
                 content: errors.join('<br />')
             });
             return false;
@@ -164,20 +184,20 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
                 $(self).parent().append('<div class="message message-success hic-validate-success-message">' + $t("Your account is valid.") + '</div>');
             } else {
                 alert({
-                    title: $t('HiConversion Account Validation Failed'),
+                    title: $t('Account Validation Failed'),
                     content: $t('Your account is not valid or completely configured. Please check that everything is setup correctly here: <a href="https://h30.hiconversion.net/admin/site/tag">Go to HiConversion Setup</a>')
                 });
             }
         }).fail(function (xhr) {
             if (xhr && xhr.status === 404) {
                 return alert({
-                    title: $t('HiConversion Account Validation Failed'),
+                    title: $t('Account Validation Failed'),
                     content: $t('We could not find the specified site. Please verify the site url and email address and try again.')
                 });
             }
             alert({
-                title: $t('HiConversion Account Validation Failed'),
-                content: $t('Your HiConversion account could not be validated. Please ensure you have entered a valid site url and email address that has access to that site in Hiconversion.')
+                title: $t('Account Validation Failed'),
+                content: $t('Your account could not be validated. Please ensure you have entered a valid site url and email address that has access to that site in Hiconversion.')
             });
         }).always(function () {
             $(self).text($t("Validate")).attr('disabled', false);

@@ -27,7 +27,7 @@ class Activation extends Field
      */
     protected function _getElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element) // @codingStandardsIgnoreLine
     {
-        $title = __("Activate HiConversion Account");
+        $title = __("Create HiConversion Account");
         $storeId = 0;
 
         if ($this->getRequest()->getParam("website")) {
