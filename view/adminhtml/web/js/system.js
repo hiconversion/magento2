@@ -176,16 +176,16 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
 
         var self = this;
         $.post(endpoint, {
-            site_url: url_id,
-            email: email_id,
+            site_url: site_url,
+            email: email,
             site_id: site_id
         }).done(function (result) {
-            if (result) {
+            if (result && result.status === 'valid') {
                 $(self).parent().append('<div class="message message-success hic-validate-success-message">' + $t("Your account is valid.") + '</div>');
             } else {
                 alert({
                     title: $t('Account Validation Failed'),
-                    content: $t('Your account is not valid or completely configured. Please check that everything is setup correctly here: <a href="https://h30.hiconversion.net/admin/site/tag">Go to HiConversion Setup</a>')
+                    content: $t(result.msg)
                 });
             }
         }).fail(function (xhr) {

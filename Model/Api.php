@@ -71,7 +71,7 @@ class Api
 
     /**
      * validates hiconversion account
-     * @return boolean true if site is valid, false otherwise
+     * @return mixed
      */
     public function validateAccount($siteUrl, $email, $siteId)
     {
@@ -83,12 +83,18 @@ class Api
         if (!isset($siteIdFromHic)) {
             return null;
         }
+ 
+        $result = [];
 
         if ($siteIdFromHic == $siteId) {
-            return true;
+            $result['status'] = 'valid';
+        } else {
+            $result['status'] = 'invalid';
+            $result['msg'] = 'Site ID given does not match Site ID found. Please check the Site ID' .
+            ' given and try again or select "Get Site ID" to automatically retrieve the Site ID.';
         }
 
-        return false;
+        return $result;
     }
 
 
