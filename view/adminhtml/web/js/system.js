@@ -1,7 +1,7 @@
-require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, alert, $t) {
+require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validation'], function ($, alert, $t) {
     window.activateHicAccount = function (endpoint) {
         var wrapper = $(this).closest('tbody');
-       
+
         var site_url = wrapper.find('input[id*=_site_url]').val();
         var email = wrapper.find('input[id*=_email]').val();
         var pw = wrapper.find('input[id*=_password]').val();
@@ -37,6 +37,10 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
             return false;
         }
 
+        if (!$(this).closest('form').validation('isValid')) {
+            return false;
+        }
+
         $(this).text($t("We're activating your account...")).attr('disabled', true);
 
         var self = this;
@@ -46,9 +50,9 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
             password: pw
         }).done(function (response) {
             if (response && response.result === 'success' && response.external && response.external.length) {
-            $(self).parent().append('<div class="message message-success hic-activation-success-message">' + $t("Your account was successfully activated. You will need to save your config before changes will take place.") + '</div>');
-            site_id_input.val(response.external);
-            site_id_tr.show();
+                $(self).parent().append('<div class="message message-success hic-activation-success-message">' + $t("Your account was successfully activated. You will need to save your config before changes will take place.") + '</div>');
+                site_id_input.val(response.external);
+                site_id_tr.show();
             } else {
                 return alert({
                     title: $t('Account Activation Failed'),
@@ -101,6 +105,10 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
                 title: $t('Get Site Id Failed'),
                 content: errors.join('<br />')
             });
+            return false;
+        }
+
+        if (!$(this).closest('form').validation('isValid')) {
             return false;
         }
 
@@ -169,6 +177,10 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate'], function ($, 
                 title: $t('Account Validation Failed'),
                 content: errors.join('<br />')
             });
+            return false;
+        }
+
+        if (!$(this).closest('form').validation('isValid')) {
             return false;
         }
 
