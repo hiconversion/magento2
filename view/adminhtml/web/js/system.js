@@ -1,4 +1,31 @@
 require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validation'], function ($, alert, $t) {
+
+    window.showHicCreateAccountFields = function (ev) {
+        ev.preventDefault();
+        var wrapper = $(this).closest('fieldset');
+
+        wrapper.find('tr[id*=_link_validate]').hide();
+        wrapper.find('tr[id*=_site_id]').hide();
+        wrapper.find('.hic-account-info-label').hide();
+
+        wrapper.find('tr[id*=_create_account]').show();
+        wrapper.find('.create-hic-account-label').show();
+    
+    }
+
+    window.showHicGetIdFields = function (ev) {
+        ev.preventDefault();
+        var wrapper = $(this).closest('fieldset');
+
+        wrapper.find('tr[id*=_link_validate]').show();
+        wrapper.find('tr[id*=_site_id]').show();
+        wrapper.find('.hic-account-info-label').show();
+
+        wrapper.find('tr[id*=_create_account]').hide();
+        wrapper.find('.create-hic-account-label').hide();
+    
+    }
+
     window.activateHicAccount = function (endpoint) {
         var wrapper = $(this).closest('tbody');
 
@@ -8,6 +35,8 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
 
         var site_id_tr = wrapper.find('tr[id*=_site_id]');
         var site_id_input = wrapper.find('input[id*=_site_id]');
+        var create_account_button = wrapper.find('tr[id*=_create_account] button');
+
 
         /* Remove previous success message if present */
         if ($(".hic-activation-success-message")) {
@@ -50,9 +79,10 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
             password: pw
         }).done(function (response) {
             if (response && response.result === 'success' && response.external && response.external.length) {
-                $(self).parent().append('<div class="message message-success hic-activation-success-message">' + $t("Your account was successfully activated. You will need to save your config before changes will take place.") + '</div>');
+                $(self).parent().append('<div class="message message-success hic-activation-success-message">' + $t("Your account was successfully activated.") + '<br/><b>' + $t('You need to save config before continuing.') + '</b></div>');
                 site_id_input.val(response.external);
                 site_id_tr.show();
+                create_account_button.hide();
             } else {
                 return alert({
                     title: $t('Account Activation Failed'),
@@ -120,7 +150,7 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
             email: email
         }).done(function (newId) {
             if (newId && newId.length) {
-                $(self).parent().append('<div class="message message-success hic-link-success-message">' + $t("Your Site Id was retrieved. You will need to save your config before changes will take place.") + '</div>');
+                $(self).parent().append('<div class="message message-success hic-link-success-message">' + $t('Your Site Id was retrieved.') + '<br/><b>' + $t('You need to save config before continuing.') + '</b></div>');
                 site_id_input.val(newId);
             } else {
                 alert({

@@ -2,3 +2,7 @@
 .hic-activation-success-message,
 .hic-link-success-message,
 .hic-validate-success-message { background: none; margin: 0; }
+
+.create-hic-account-label {
+    display:none;
+}
