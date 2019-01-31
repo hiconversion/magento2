@@ -12,7 +12,6 @@
     "magento/module-store": "~100.0",
     "magento/module-customer": "~100.0|~101.0",
     "magento/module-sales": "~100.0|~101.0",
-    "magento/framework": "~100.0|~101.0",
     "magento/module-paypal": "~100.0"
 },
 "license": "MIT",
