@@ -30,6 +30,7 @@ $helper = $this->helper('Hic\Integration\Helper\Helper');
             __hic.data.platformVersion = "<?php /* @noEscape */ echo $helper->getMageVersion(); ?>";
             __hic.data.platformEdition = "<?php /* @noEscape */ echo $helper->getMageEdition(); ?>";
             __hic.data.pid = "<?php /* @noEscape */ echo $helper->getSiteId(); ?>";
+            __hic.data.bncode = "<?php /* @noEscape */ echo $helper->getBNCode(); ?>";
             
             var script = document.createElement("script");
             script.id = "hiconversion_30";
