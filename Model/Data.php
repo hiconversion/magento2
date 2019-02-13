@@ -153,7 +153,6 @@ class Data extends \Magento\Framework\Model\AbstractModel
      * @param Image $imageHelper
      * @param CcConfig $ccConfig
      * @param StoreManagerInterface $storeManager
-     * @param LoggerInterface $logger
      */
     public function __construct(
         Context $context,
@@ -173,8 +172,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         CheckoutSession $checkoutSession,
         Image $imageHelper,
         CcConfig $ccConfig,
-        StoreManagerInterface $storeManager,
-        LoggerInterface $logger
+        StoreManagerInterface $storeManager
     ) {
         $this->request = $request;
         $this->catalogData = $catalogData;
@@ -192,7 +190,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
         $this->imageHelper = $imageHelper;
         $this->ccConfig = $ccConfig;
         $this->storeManager = $storeManager;
-        $this->logger = $logger;
+        $this->logger = $context->getLogger();
 
         parent::__construct(
             $context,
