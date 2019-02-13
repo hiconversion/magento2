@@ -36,6 +36,7 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
         var site_id_tr = wrapper.find('tr[id*=_site_id]');
         var site_id_input = wrapper.find('input[id*=_site_id]');
         var create_account_button = wrapper.find('tr[id*=_create_account] button');
+        var create_account_note = wrapper.find('tr[id*=_create_account] .note');
 
 
         /* Remove previous success message if present */
@@ -83,6 +84,7 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
                 site_id_input.val(response.external);
                 site_id_tr.show();
                 create_account_button.hide();
+                create_account_note.hide();
             } else {
                 return alert({
                     title: $t('Account Activation Failed'),
