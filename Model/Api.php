@@ -10,8 +10,8 @@ use Magento\Framework\HTTP\Client\Curl;
  */
 class Api
 {
-    // const BASE_URL = "https://h30.hiconversion.net/api/extensions";
-    const BASE_URL = "http://h30-local.hiconversion.net:9000/api/extensions/";
+    const BASE_URL = "https://h30.hiconversion.net/api/extensions/";
+    // const BASE_URL = "http://h30-local.hiconversion.net:9000/api/extensions/";
     const CREATE_ACCOUNT_URL = self::BASE_URL . "signup";
     const GET_SITES_URL = self::BASE_URL . "user/sites";
     const VALIDATE_ACCOUNT_URL = self::BASE_URL . "validate";
