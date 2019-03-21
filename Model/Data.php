@@ -344,16 +344,20 @@ class Data extends \Magento\Framework\Model\AbstractModel
             } else {
                 $info['qt'] = (float)$item->getQty();
             }
-            $stockItem = $this->stockRegistry
-                ->getStockItemBySku($item->getSku(), $product->getStore()->getWebsiteId());
-            if ($stockItem) {
-                $info['sq'] =  $stockItem->getQty();
+            try {
+                $stockItem = $this->stockRegistry
+                    ->getStockItemBySku($product->getSku(), $product->getStore()->getWebsiteId());
+                if ($stockItem) {
+                    $info['sq'] =  $stockItem->getQty();
+                }
+            } catch (\Exception $e) {
+                $this->logger->critical($e->getMessage());
             }
             $info['id'] = $item->getId();
             $info['url'] = $this->productHelper->getProductUrl($product);
             $info['nm'] = $item->getName();
             $info['img'] = $imageHelper->getUrl();
-            $info['sku'] = $item->getSku();
+            $info['sku'] = $product->getSku();
             $info['cat'] = $this->getCategoryNames($product);
 
             $info['opt'] = $this->getOptionList($item, $isOrder);
@@ -417,11 +421,16 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $data['sku'] = $currentProduct->getSku();
             $data['bpr'] = $currentProduct->getPrice();
             $data['pr'] = $currentProduct->getFinalPrice();
-            $stockItem = $this->stockRegistry
-                ->getStockItemBySku($currentProduct->getSku(), $currentProduct->getStore()->getWebsiteId());
-            if ($stockItem) {
-                $data['sq'] =  $stockItem->getQty();
+            try {
+                $stockItem = $this->stockRegistry
+                    ->getStockItemBySku($currentProduct->getSku(), $currentProduct->getStore()->getWebsiteId());
+                if ($stockItem) {
+                    $data['sq'] =  $stockItem->getQty();
+                }
+            } catch (\Exception $e) {
+                $this->logger->critical($e->getMessage());
             }
+
             $data['img'] = $imageHelper->getUrl();
             $data['cur'] = $this->getCurrencyInfo();
             $this->setProduct($data);

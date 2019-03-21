@@ -97,7 +97,6 @@ class Api
         return $result;
     }
 
-
     /**
      * retrieves site id corresponding to specified url from hic service
      * @return string|null site id
