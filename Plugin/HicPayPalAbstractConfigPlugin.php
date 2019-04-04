@@ -18,6 +18,7 @@
 
 namespace Hic\Integration\Plugin;
 
+use Magento\Paypal\Model\AbstractConfig;
 use Hic\Integration\Helper\Helper;
 
 /**
@@ -47,7 +48,7 @@ class HicPayPalAbstractConfigPlugin
      *
      * @return string
      */
-    public function afterGetBuildNotationCode($result)
+    public function afterGetBuildNotationCode(AbstractConfig $subject, $result)
     {
         $newBnCode = $this->hicHelper->getBNCode();
         if (!empty($newBnCode)) {
