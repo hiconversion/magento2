@@ -228,6 +228,15 @@ class Data extends \Magento\Framework\Model\AbstractModel
         return 'checkout_onepage_success' == $this->getRoute();
     }
 
+    /**
+     * @param null|string|bool|int|\Magento\Store\Api\Data\StoreInterface $storeId
+     * @return \Magento\Store\Model\Store
+     */
+    public function getStore($storeId = null)
+    {
+        return $this->storeManager->getStore($storeId);
+    }
+
      /**
       * Retrieves page route and breadcrumb info and populates page
       * attribute
