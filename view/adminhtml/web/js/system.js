@@ -103,7 +103,7 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
                 content: $t('Your account could not be activated. Please ensure you have entered a valid site url, email address, and password.')
             });
         }).always(function () {
-            $(self).text($t("Activate Account")).attr('disabled', false);
+            $(self).text($t("Create HiConversion Account")).attr('disabled', false);
         });
     }
 
