@@ -135,7 +135,13 @@ class Rehydrate extends Action
         $cartId = $this->getRequest()->getParam(self::CART_ID_PARAM);
         try {
             if ($cartId) {
-                $quote = $this->guestCartRepository->get($cartId);
+                $quote = null;
+                try {
+                    $quote = $this->guestCartRepository->get($cartId);
+                } catch (\Exception $e) {
+                    // guestCartRepository throws entityNotFoundExceptions if cartId is not 
+                    // a masked id in the case of logins
+                }
                 if ($quote === null || !$quote->getId()) {
                     // try and see if we are getting an actual cart id and not a masked one
                     $quote = $this->cartRepository->get($cartId);
@@ -162,7 +168,7 @@ class Rehydrate extends Action
 
     private function setMissingCartMessage()
     {
-        $this->messageManager->addErrorMessage('Sorry, we could not find your cart');                
+        $this->messageManager->addError(__('Sorry, we could not find your cart'));                
     }
 
     private function getCartUrl(Store $store, $currentUrl)
