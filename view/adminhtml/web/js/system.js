@@ -29,8 +29,11 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
     window.activateHicAccount = function (endpoint) {
         var wrapper = $(this).closest('tbody');
 
-        var site_url = wrapper.find('input[id*=_site_url]').val();
-        var email = wrapper.find('input[id*=_email]').val();
+        var $site_url = wrapper.find('input[id*=_site_url]');
+        var $email = wrapper.find('input[id*=_email]');
+
+        var site_url = $site_url.val();
+        var email = $email.val();
         var pw = wrapper.find('input[id*=_password]').val();
 
         var site_id_tr = wrapper.find('tr[id*=_site_id]');
@@ -67,7 +70,9 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
             return false;
         }
 
-        if (!$(this).closest('form').validation('isValid')) {
+        var validator = $(this).closest('form').validate();
+        
+        if (!validator.element($site_url) || !validator.element($email)) {
             return false;
         }
 
@@ -111,8 +116,11 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
     window.linkHicAccount = function (endpoint) {
         var wrapper = $(this).closest('tbody');
 
-        var site_url = wrapper.find('input[id*=_site_url]').val();
-        var email = wrapper.find('input[id*=_email]').val();
+        var $site_url = wrapper.find('input[id*=_site_url]');
+        var $email = wrapper.find('input[id*=_email]');
+
+        var site_url = $site_url.val();
+        var email = $email.val();
 
         var site_id_input = wrapper.find('input[id*=_site_id]');
 
@@ -140,7 +148,9 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
             return false;
         }
 
-        if (!$(this).closest('form').validation('isValid')) {
+        var validator = $(this).closest('form').validate();
+
+        if (!validator.element($site_url) || !validator.element($email)) {
             return false;
         }
 
@@ -180,9 +190,12 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
     window.validateHicAccount = function (endpoint) {
         var wrapper = $(this).closest('tbody');
 
-        site_url = wrapper.find('input[id*=_site_url]').val();
-        email = wrapper.find('input[id*=_email]').val();
-        site_id = wrapper.find('input[id*=_site_id]').val();
+        var $site_url = wrapper.find('input[id*=_site_url]');
+        var $email = wrapper.find('input[id*=_email]');
+
+        var site_url = $site_url.val();
+        var email = $email.val();
+        var site_id = wrapper.find('input[id*=_site_id]').val();
 
         /* Remove previous success message if present */
         if ($(".hic-validate-success-message")) {
@@ -212,7 +225,9 @@ require(['jquery', 'Magento_Ui/js/modal/alert', 'mage/translate', 'mage/validati
             return false;
         }
 
-        if (!$(this).closest('form').validation('isValid')) {
+        var validator = $(this).closest('form').validate();
+
+        if (!validator.element($site_url) || !validator.element($email)) {
             return false;
         }
 
