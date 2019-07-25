@@ -3,7 +3,7 @@
 namespace Hic\Integration\Controller\Cart;
 
 use Magento\Checkout\Model\Session;
-use Magento\Framework\UrlInterface; 
+use Magento\Framework\UrlInterface;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Store\Model\Store;
@@ -125,7 +125,7 @@ class Rehydrate extends Action
     }
 
     public function execute()
-    {   
+    {
         $store = $this->hicModel->getStore();
         $redirectUrl = $store->getBaseUrl();
 
@@ -139,7 +139,7 @@ class Rehydrate extends Action
                 try {
                     $quote = $this->guestCartRepository->get($cartId);
                 } catch (\Exception $e) {
-                    // guestCartRepository throws entityNotFoundExceptions if cartId is not 
+                    // guestCartRepository throws entityNotFoundExceptions if cartId is not
                     // a masked id in the case of logins
                 }
                 if ($quote === null || !$quote->getId()) {
@@ -168,7 +168,7 @@ class Rehydrate extends Action
 
     private function setMissingCartMessage()
     {
-        $this->messageManager->addError(__('Sorry, we could not find your cart'));                
+        $this->messageManager->addError(__('Sorry, we could not find your cart'));
     }
 
     private function getCartUrl(Store $store, $currentUrl)
@@ -256,7 +256,7 @@ class Rehydrate extends Action
     private function parseQueryString($queryString)
     {
         if (empty($queryString)) {
-            return array();
+            return [];
         }
         parse_str($queryString, $parsedQueryString);
         return $parsedQueryString;

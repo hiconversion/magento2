@@ -20,9 +20,9 @@ $helper = $this->helper('Hic\Integration\Helper\Helper');
 ?>
 
 <?php if ($helper->isEnabled()) :?>
-<?php
-$hic_data = $helper->getPageData();
-?>
+    <?php
+    $hic_data = $helper->getPageData();
+    ?>
 
 <script id="hiconversion_head_page" type="text/javascript">
      var __hic = __hic || {};
@@ -31,10 +31,10 @@ $hic_data = $helper->getPageData();
             <?php if (isset($hic_data)) :?>
             __hic.data = __hic.data || {};
                 <?php if (null!==$hic_data->getData('page')) :?>
-            __hic.data.page = <?php /* @noEscape */ echo Zend_Json::encode($hic_data->getData('page')); ?>;
+            __hic.data.page = <?= /* @noEscape */ Zend_Json::encode($hic_data->getData('page')); ?>;
                 <?php endif; ?>
                 <?php if (null!==$hic_data->getData('product')) :?>
-            __hic.data.product = <?php /* @noEscape */ echo Zend_Json::encode($hic_data->getData('product')); ?>;
+            __hic.data.product = <?= /* @noEscape */ Zend_Json::encode($hic_data->getData('product')); ?>;
                 <?php endif; ?>
             <?php endif; ?>
         } catch (e) {
