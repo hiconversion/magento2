@@ -106,6 +106,8 @@ class Api
         $this->setDefaultCurlOpts();
         $this->setDefaultHeaders();
 
+        $siteHost = parse_url($siteUrl, PHP_URL_HOST);
+
         $this->curl->post(self::GET_SITES_URL, json_encode([
             'email' => $email
         ]));
@@ -115,9 +117,12 @@ class Api
         $siteId = null;
         if (is_array($sites)) {
             foreach ($sites as $site) {
-                if (isset($site['url']) & $site['url'] == $siteUrl) {
-                    $siteId = $site['external'];
-                    break;
+                if (isset($site['url'])) {
+                    $incomingSiteHost = parse_url($site['url'], PHP_URL_HOST);
+                    if ($incomingSiteHost === $siteHost) {
+                        $siteId = $site['external'];
+                        break;
+                    }
                 }
             }
         }
