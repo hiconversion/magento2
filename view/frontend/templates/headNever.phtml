@@ -19,9 +19,9 @@
 $helper = $this->helper('Hic\Integration\Helper\Helper');
 ?>
 <?php if ($helper->isEnabled()) :?>
-<?php
-$hic_data = $helper->getOrderData();
-?>
+    <?php
+    $hic_data = $helper->getOrderData();
+    ?>
     <?php if (isset($hic_data)) :?>
         <?php if (null!==$hic_data->getData('tr')) :?>
 <script id="hiconversion_head_never" type="text/javascript">
@@ -29,7 +29,7 @@ $hic_data = $helper->getOrderData();
     (function(){
         try {
             __hic.data = __hic.data || {};
-            __hic.data.tr = <?php /* @noEscape */ echo Zend_Json::encode($hic_data->getData('tr')); ?>;
+            __hic.data.tr = <?= /* @noEscape */ Zend_Json::encode($hic_data->getData('tr')); ?>;
         } catch (e) {
         }
     })();
