@@ -4,6 +4,9 @@
     <action name="checkout/cart/add">
         <section name="hic-cart-data"/>
     </action>
+    <action name="ajaxcartpro/cart/add">
+        <section name="hic-cart-data"/>
+    </action>
     <action name="checkout/cart/delete">
         <section name="hic-cart-data"/>
     </action>
