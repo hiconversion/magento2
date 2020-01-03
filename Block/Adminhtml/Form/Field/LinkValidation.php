@@ -6,7 +6,7 @@ use Magento\Config\Block\System\Config\Form\Field;
 
 /**
  * Class LinkValidation
- * @package Hic\Integration\Block\Adminhtml\Form\Field
+ * Create link validation button for admin panel
  */
 class LinkValidation extends Field
 {

@@ -8,7 +8,7 @@ use Magento\Framework\Controller\ResultFactory;
 
 /**
  * Class LinkAccount
- * @package Hic\Integration\Controller\Adminhtml\Configuration
+ * controller action for link account button
  */
 class LinkAccount extends \Magento\Backend\App\Action
 {

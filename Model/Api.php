@@ -6,7 +6,7 @@ use Magento\Framework\HTTP\Client\Curl;
 
 /**
  * Class Api
- * @package Hic\Integration\Model\Api
+ * provides external hic api call wrappers
  */
 class Api
 {

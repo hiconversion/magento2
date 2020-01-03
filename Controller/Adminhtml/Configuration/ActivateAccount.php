@@ -8,7 +8,7 @@ use Magento\Framework\Controller\ResultFactory;
 
 /**
  * Class ActivateAccount
- * @package Hic\Integration\Controller\Adminhtml\Configuration
+ * controller action for activate account button
  */
 class ActivateAccount extends \Magento\Backend\App\Action
 {
@@ -45,7 +45,8 @@ class ActivateAccount extends \Magento\Backend\App\Action
         try {
             $result = $this->hicApi->activateAccount($siteUrl, $email, $pw);
 
-            if (isset($result) && isset($result['result']) && $result['result'] === "success" && isset($result['external'])) {
+            if (isset($result) && isset($result['result']) && $result['result'] === "success" 
+                && isset($result['external'])) {
                 $response->setData($result);
                 $response->setHttpResponseCode(200);
             } else {

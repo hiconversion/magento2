@@ -14,7 +14,7 @@ use Hic\Integration\Model\Data;
 
 /**
  * Class Rehydrate
- * @package Hic\Integration\Controller\Cart
+ * controller action for rehydrating a previously stored cart
  */
 class Rehydrate extends Action
 {
@@ -139,8 +139,11 @@ class Rehydrate extends Action
                 try {
                     $quote = $this->guestCartRepository->get($cartId);
                 } catch (\Exception $e) {
-                    // guestCartRepository throws entityNotFoundExceptions if cartId is not
+                    // guestCartRepository throws NoSuchEntityExceptions if cartId is not
                     // a masked id in the case of logins
+                    if (!($e instanceof \Magento\Framework\Exception\NoSuchEntityException)) {
+                        throw $e;
+                    }
                 }
                 if ($quote === null || !$quote->getId()) {
                     // try and see if we are getting an actual cart id and not a masked one

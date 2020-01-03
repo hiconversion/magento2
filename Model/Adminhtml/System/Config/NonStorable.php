@@ -7,7 +7,6 @@ use Magento\Framework\App\Config\Value;
 /**
  * Class NonStorable
  * Provides an admin form field that doesn't get stored in backend (for purposes of signup and such)
- * @package Hic\Integration\Model\Adminhtml\System\Config
  */
 class NonStorable extends Value
 {

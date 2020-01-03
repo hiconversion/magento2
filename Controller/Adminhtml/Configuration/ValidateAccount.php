@@ -8,7 +8,7 @@ use Magento\Framework\Controller\ResultFactory;
 
 /**
  * Class ValidateAccount
- * @package Hic\Integration\Controller\Adminhtml\Configuration
+ * controller action for validate account button
  */
 class ValidateAccount extends \Magento\Backend\App\Action
 {
