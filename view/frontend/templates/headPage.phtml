@@ -19,7 +19,7 @@
 $helper = $this->helper('Hic\Integration\Helper\Helper');
 ?>
 
-<?php if ($helper->isEnabled()) :?>
+<?php if ($helper->isEnabled()):?>
     <?php
     $hic_data = $helper->getPageData();
     ?>
@@ -28,12 +28,12 @@ $helper = $this->helper('Hic\Integration\Helper\Helper');
      var __hic = __hic || {};
     (function(){
         try {
-            <?php if (isset($hic_data)) :?>
+            <?php if (isset($hic_data)):?>
             __hic.data = __hic.data || {};
-                <?php if (null!==$hic_data->getData('page')) :?>
+                <?php if (null!==$hic_data->getData('page')):?>
             __hic.data.page = <?= /* @noEscape */ Zend_Json::encode($hic_data->getData('page')); ?>;
                 <?php endif; ?>
-                <?php if (null!==$hic_data->getData('product')) :?>
+                <?php if (null!==$hic_data->getData('product')):?>
             __hic.data.product = <?= /* @noEscape */ Zend_Json::encode($hic_data->getData('product')); ?>;
                 <?php endif; ?>
             <?php endif; ?>
