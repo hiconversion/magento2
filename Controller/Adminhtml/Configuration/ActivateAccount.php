@@ -46,7 +46,6 @@ class ActivateAccount extends \Magento\Backend\App\Action
             $result = $this->hicApi->activateAccount($siteUrl, $email, $pw);
 
             if (isset($result) && isset($result['result']) && $result['result'] === "success" && isset($result['external'])) {
-                $siteId = $result['external'];
                 $response->setData($result);
                 $response->setHttpResponseCode(200);
             } else {

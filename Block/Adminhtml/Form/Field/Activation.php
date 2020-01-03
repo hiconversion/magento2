@@ -6,7 +6,7 @@ use Magento\Config\Block\System\Config\Form\Field;
 
 /**
  * Class Activation
- * @package Hic\Integration\Block\Adminhtml\Form\Field
+ * provides activation button for admin panel
  */
 class Activation extends Field
 {
