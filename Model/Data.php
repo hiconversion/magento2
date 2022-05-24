@@ -367,7 +367,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
             $info['nm'] = $item->getName();
             $info['img'] = $imageHelper->getUrl();
             $info['sku'] = $product->getSku();
-            $info['cat'] = $this->getCategoryNames($product);
+            // $info['cat'] = $this->getCategoryNames($product);
 
             $info['opt'] = $this->getOptionList($item, $isOrder);
 
@@ -477,7 +477,7 @@ class Data extends \Magento\Framework\Model\AbstractModel
     {
         $data = [];
         $data['auth'] = $this->customerSession->isLoggedIn();
-        $data['ht'] = false;
+        // $data['ht'] = false;
         $data['nv'] = true;
         $data['cg'] = $this->customerSession->getCustomerGroupId();
         $data['cur'] = $this->getCurrencyInfo();
@@ -485,14 +485,14 @@ class Data extends \Magento\Framework\Model\AbstractModel
         if ($customerId) {
             $customer = $this->customerRepository->getById($customerId);
             if ($customer) {
-                $orders = $this->getOrders($customerId);
-                if ($orders) {
-                    $ocnt = count($orders);
-                    if ($ocnt > 0) {
-                        $data['ht'] = true;
-                        $data['ocnt'] = $ocnt;
-                    }
-                }
+                // $orders = $this->getOrders($customerId);
+                // if ($orders) {
+                //     $ocnt = count($orders);
+                //     if ($ocnt > 0) {
+                //         $data['ht'] = true;
+                //         $data['ocnt'] = $ocnt;
+                //     }
+                // }
                 if ($customer->getDob()) {
                     $dob = new DateTime($customer->getDob());
                     $data['by'] = $dob->format('Y');
